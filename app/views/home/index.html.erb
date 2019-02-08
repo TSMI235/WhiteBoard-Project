@@ -2,10 +2,16 @@
 <p>Find me in app/views/home/index.html.erb</p>
 
 <!-- If user is signed in, only option visible is Sign Out. Can remove and change this when working on this file -->
-<% if current_user %>
-    <%= link_to 'Sign Out', destroy_user_session_path, 
-    method: :delete %>
-<% else %>
-    <%= link_to 'Sign Up', new_user_registration_path %>
-    <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
+<div id="user-buttons">
+    <% if current_user %>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Create New', '' %>
+    <% else %>
+        <%= link_to 'Sign Up', new_user_registration_path %>
+        <%= link_to 'Sign In', new_user_session_path %>
+    <% end %>
+</div>
+
+<div id="wb-btn">
+    <%= link_to 'Whiteboard', 'whiteboard/wbpage' %>
+</div>
