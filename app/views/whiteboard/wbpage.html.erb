@@ -1,2 +1,32 @@
-<h1>Whiteboard#wbpage</h1>
-<p>Find me in app/views/whiteboard/wbpage.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Whiteboard</title>
+    <style>
+        #info{
+            z-index:10;
+            position: absolute;
+        }
+        #thecanvas{
+            z-index:1;
+            position: absolute;
+        }
+    </style>
+    <meta name="turbolinks-cache-control" content="no-preview">
+
+  </head>
+
+  <body>
+        <div id=info>
+            <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
+        </div>
+        <div id=thecanvas>
+        <canvas id="board"></canvas>
+        </div>
+            
+    <%= javascript_include_tag "board", "data-turbolinks-track" => true  %>
+  </body>
+</html>
