@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'home/index'
+  get 'home/info'
   get 'whiteboard/wbpage'
 
   devise_for :users
