@@ -1,17 +1,38 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!DOCTYPE html>
+<html> 
+	<head> 
+		<meta charset="utf-8"/>
+		<title>Bootstrap grid </title> 
 
-<!-- If user is signed in, only option visible is Sign Out. Can remove and change this when working on this file -->
-<div id="user-buttons">
-    <% if current_user %>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-        <%= link_to 'Create New', '' %>
-    <% else %>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-        <%= link_to 'Sign In', new_user_session_path %>
-    <% end %>
+
+		<!-- We link the CDN css files here --> 
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" > 
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
+
+	</head>
+	<body>
+		<a href="infoPage.html" class="btn btn-Dark" role="button">INFORMATION</a>
+		<button type="button" class="btn btn-Dark">SIGN IN</button>
+		<a href="#" class="btn btn-Dark" role="button">TRY NOW</a>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="jumbotron">
+  						<h1>Welcome to Whiteboard!</h1>
+  						<p>Collaborating Whiteboard</p>
+				</div>
+				</div>
+			</div>
+	
 </div>
 
-<div id="wb-btn">
-    <%= link_to 'Whiteboard', 'whiteboard/wbpage' %>
-</div>
+
+	<!-- Javascript files should be linked at the bottom of the page --> 
+		<script src="app/assets/javascripts/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+		<script src="app/assets/javascripts/bootstrap.min.js"></script>
+	</body>
+</html>
