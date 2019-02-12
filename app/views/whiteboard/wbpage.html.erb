@@ -22,11 +22,22 @@
   <body>
         <div id=info>
             <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
+			<select ID = "Color">
+				<option value="blue">Blue</option>
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="">Brown</option>
+				<option value="purple">Purple</option>
+				<option value="black">Black</option>
+			</select>
+			<button onclick="changeColor()" type="Submit">Select</button>
+			<p ID="tag">Size: 5</>
         </div>
         <div id=thecanvas>
         <canvas id="board"></canvas>
         </div>
             
-    <%= javascript_include_tag "board", "data-turbolinks-track" => true  %>
+		<%= javascript_include_tag "board", "data-turbolinks-track" => true %>
+
   </body>
 </html>

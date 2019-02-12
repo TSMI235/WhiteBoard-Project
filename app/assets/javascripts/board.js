@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function(){
 
 class whiteboardObject {
 
@@ -50,6 +50,9 @@ class whiteboardObject {
 	}
 
 	draw(xPrev,yPrev,xPos,yPos) {
+		this.context.lineWidth = this.tool.size*2;
+		this.context.strokeStyle = this.tool.color;
+		this.context.fillStyle = this.tool.color;
 		this.context.beginPath();
     	this.context.arc(xPrev, yPrev, this.tool.size, 0, 2 * Math.PI);
     	this.context.fill();
@@ -93,13 +96,33 @@ if(t) {
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 49) {
     	whiteboard.setTool(new marker(5,"blue"));
+		var tag = document.getElementById('tag');
+		tag.innerHTML = "Size: "+whiteboard.tool.size;
     }
     else if(event.keyCode == 50) {
         whiteboard.setTool(new highlighter(20,"yellow"));
+		var tag = document.getElementById('tag');
+		tag.innerHTML = "Size: "+whiteboard.tool.size;
     }
     else if(event.keyCode == 51) {
         whiteboard.setTool(new marker(100,"white"));
+		
     }
+	else if(event.keyCode == 61) {
+        whiteboard.tool.size+=5;
+		var tag = document.getElementById('tag');
+		tag.innerHTML = "Size: "+whiteboard.tool.size;
+    }
+    else if(event.keyCode == 173) {
+       whiteboard.tool.size-=5;
+		var tag = document.getElementById('tag');
+		tag.innerHTML = "Size: "+whiteboard.tool.size;
+	}
 });
 
+function changeColor(){
+	whiteboard.tool.color = document.getElementById('Color').value;
+	console.log(document.getElementById('Color').value);
+
+}
 });
