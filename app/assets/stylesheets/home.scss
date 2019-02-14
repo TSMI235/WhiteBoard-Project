@@ -1,3 +1,21 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.home-info-buttons {
+    margin: 3rem 3rem 3rem 3rem;
+    
+}
+
+.user-account-buttons {
+    float: right;
+}
+
+.nav-buttons {
+    float: left;
+}
+
+.main-header {
+    padding: 5rem 5rem 5rem 5rem;
+    align-content: center;
+    float: center;
+}
