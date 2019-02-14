@@ -50,8 +50,8 @@ class whiteboardObject {
 	}
 
 	draw(xPrev,yPrev,xPos,yPos) {
-		this.context.lineWidth = this.tool.size*2;
 		this.context.strokeStyle = this.tool.color;
+		this.context.lineWidth = this.tool.size*2;
 		this.context.fillStyle = this.tool.color;
 		this.context.beginPath();
     	this.context.arc(xPrev, yPrev, this.tool.size, 0, 2 * Math.PI);
@@ -108,21 +108,23 @@ document.addEventListener('keydown', function(event) {
         whiteboard.setTool(new marker(100,"white"));
 		
     }
-	else if(event.keyCode == 61) {
-        whiteboard.tool.size+=5;
+	else if(event.keyCode == 187 || event.keyCode == 61) {
+		whiteboard.setTool(new marker(whiteboard.tool.size+5,document.getElementById('Color').value));
 		var tag = document.getElementById('tag');
 		tag.innerHTML = "Size: "+whiteboard.tool.size;
     }
-    else if(event.keyCode == 173) {
-       whiteboard.tool.size-=5;
-		var tag = document.getElementById('tag');
-		tag.innerHTML = "Size: "+whiteboard.tool.size;
+    else if(event.keyCode == 189 || event.keyCode == 173) {
+    	if(whiteboard.tool.size >5) {
+	        whiteboard.setTool(new marker(whiteboard.tool.size-5,document.getElementById('Color').value));
+			var tag = document.getElementById('tag');
+			tag.innerHTML = "Size: "+whiteboard.tool.size;
+		}
 	}
 });
 
-function changeColor(){
-	whiteboard.tool.color = document.getElementById('Color').value;
-	console.log(document.getElementById('Color').value);
-
+document.getElementById("Color").onchange = function() {
+	whiteboard.setTool(new marker(whiteboard.tool.size+5,document.getElementById('Color').value));
+	var tag = document.getElementById('tag');
+	tag.innerHTML = "Size: "+whiteboard.tool.size;
 }
 });
