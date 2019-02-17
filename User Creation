@@ -1,0 +1,14 @@
+class CreateUsers < class User < ActiveRecord::Base
+    def change 
+        create_table :accounts do |t|
+        t.string :UserID
+        t.string :FIRST_NAME
+        t.string :LAST_NAME
+        t.string :EMAIL
+    
+        before_save {self.email = email.downcase}
+        validates_confirmation_of :email, on: :create, message: "should match confirmation"
+
+        end    
+    end
+end
