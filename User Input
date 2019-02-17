@@ -1,0 +1,8 @@
+class UserInput < class user < ActiveRecord::Base
+
+def UserInput
+    @UserID = params[:UserID]
+    @first = params[:FIRST_NAME]
+    @last = params[:LAST_NAME]
+    @email = params[:EMAIL]
+end 
