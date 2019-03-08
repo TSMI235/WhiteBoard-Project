@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
-  get 'home/index'
-  get 'home/info'
+  root to: 'home#index'
+
   get 'whiteboard/wbpage'
 
+  get 'home/index'
+  get 'home/info'
+
   devise_for :users
-  root to: 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
