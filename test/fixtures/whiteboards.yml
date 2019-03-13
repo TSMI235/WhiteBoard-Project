@@ -3,11 +3,7 @@
 one:
   title: MyString
   description: MyText
-  image: 
-  board: one
 
 two:
   title: MyString
   description: MyText
-  image: 
-  board: two

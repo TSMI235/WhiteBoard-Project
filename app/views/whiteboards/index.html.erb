@@ -1,0 +1,18 @@
+<h1>Whiteboard List</h1>
+
+<h4>THIS PAGE WILL EVENTUALLY SHOW ALL THE USERS PERSONAL WHITEBOARDS</h4>
+<button><%= link_to "Home", '../home/index' %></button>
+<button><%= link_to "Create Whiteboard", new_whiteboard_path %></button>
+
+<% @whiteboards.each do |whiteboard| %>
+<div class="card" style="width: 18rem; padding: 2rem;">
+  <div class="card-img-top">
+    <%= image_tag('placehold.jpg', width: '150px')%>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= whiteboard.title %></h5>
+    <p class="card-text"><%= whiteboard.description %></p>
+    <%= link_to "Use Whiteboard", whiteboard, class:"btn btn-primary"%>
+  </div>
+</div>
+<% end %>

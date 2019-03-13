@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190228225517) do
+ActiveRecord::Schema.define(version: 20190312224905) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,11 +27,8 @@ ActiveRecord::Schema.define(version: 20190228225517) do
   create_table "whiteboards", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.binary "image"
-    t.integer "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["board_id"], name: "index_whiteboards_on_board_id"
   end
 
 end

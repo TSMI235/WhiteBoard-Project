@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   
   root to: 'home#index'
 
-  get 'whiteboard/wbpage'
+  resources :whiteboards
+  get 'whiteboards/:id', to: 'whiteboards#show'
 
+  get 'home/wbpage'
   get 'home/index'
   get 'home/info'
 
