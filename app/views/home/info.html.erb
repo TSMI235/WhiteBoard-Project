@@ -17,9 +17,14 @@
 	
 	<div class="home-info-buttons">
 		<div class="nav-buttons">
-			<a href="../home/index" class="btn btn-Dark" role="button">HOME</a>
-			<%= link_to 'MY WHITEBOARDS', '../whiteboards', :class=>"btn btn-Dark" %>
-			<%= link_to 'CREATE NEW', '../whiteboards/new', :class=>"btn btn-Dark" %>
+			<%= link_to 'INFORMATION', "../home/info", :class=>"btn btn-Dark" %>
+			<% if current_user %>
+				<%= link_to 'MY WHITEBOARDS', '../whiteboards', :class=> "btn btn-Dark" %>
+				<%= link_to 'CREATE NEW', '../whiteboards/new', :class=> "btn btn-Dark" %>
+			<% else %>
+				<%= link_to 'MY WHITEBOARDS', new_user_session_path, :class=>"btn btn-Dark" %>
+				<%= link_to 'CREATE NEW', new_user_session_path, :class=>"btn btn-Dark" %>
+			<% end %>
 		</div>
 
 		<div class="user-account-buttons">

@@ -39,7 +39,7 @@ class WhiteboardsController < ApplicationController
     def destroy
         @whiteboard = Whiteboard.find(params[:id])
         @whiteboard.destroy
-        redirect_to whiteboards_path
+        redirect_to controller: 'home', action: 'index'
     end
     
     private
