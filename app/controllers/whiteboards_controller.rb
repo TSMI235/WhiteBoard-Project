@@ -41,6 +41,18 @@ class WhiteboardsController < ApplicationController
         @whiteboard.destroy
         redirect_to controller: 'home', action: 'index'
     end
+
+    def showcable
+        ActionCable.server.broadcast 'drawing',
+        x: params[:x],
+        y: params[:y],
+        x1: params[:x1],
+        y2: params[:y2],
+        color1: params[:color1],
+        size1: params[:size1],
+        highl: params[:highl]
+        head :ok
+    end
     
     private
 

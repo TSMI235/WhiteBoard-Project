@@ -14,3 +14,6 @@
 //= require turbolinks
 //= require_tree .
 //= require whiteboards
+//= require jquery
+//= require jquery_ujs
+//= require_tree ./channels

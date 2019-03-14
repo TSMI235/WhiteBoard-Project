@@ -1,130 +1,178 @@
-document.addEventListener("turbolinks:load", function(){
+//= require cable
+//= require_self
+//= require_tree .
+App = {};
 
-class whiteboardObject {
+App.cable = ActionCable.createConsumer();
 
-	constructor(canvas) {
-		this.down = false; //Class Variable to track is mouse is down
-		this.canvas = canvas;
-		canvas.width = window.innerWidth; //set the Canvas width and Height
-		canvas.height = window.innerHeight;
-		this.context = this.canvas.getContext("2d");
-		this.canvas.addEventListener("mousedown", function(e){
-			whiteboard.down = true; //set the class variable to down
+App.messages = App.cable.subscriptions.create('DrawChannel', {
+  received: function(data) {
+    drawLine(data.x, data.y, data.x1, data.y2, data.color1, data.size1, data.highl);
+  }
+});
+
+$(function() { 
+	
+	var time = $.now();
+	var down = false; //Class Variable to track is mouse is down
+	canvas = $("#board");
+	context = canvas[0].getContext("2d");
+	context.canvas.height = $(window).height();//set the Canvas width and Height
+	context.canvas.width = $(window).width();
+	canvas.on("mousedown", function(e){
+		down = true; //set the class variable to down
+		 });
+	canvas.on("touchstart", function(e){
+		down = true; //set the class variable to down
 		});
-		this.xPrev = null;
-		this.yPrev = null;
-		this.canvas.addEventListener("mousemove", function(e){ //Mouse moved
-			if(whiteboard.down) { //If mouse is down
-				if(whiteboard.xPrev == null && whiteboard.yPrev == null) { //If the start of a new line
-					whiteboard.draw(e.x,e.y,e.x,e.y);
-				}
-				else { // If the line has already started
-					whiteboard.draw(whiteboard.xPrev,whiteboard.yPrev,e.x,e.y);
-				}
-				whiteboard.xPrev = e.x; //set the previous position
-				whiteboard.yPrev = e.y;
-		}
-		});
-		this.canvas.addEventListener('mouseup',function(e){
-			whiteboard.down = false; //set the class variable to not down
-			whiteboard.xPrev = null;  //reset the previous positions of the line
-			whiteboard.yPrev = null;
-		});
-		this.tool = new marker(5,"blue"); //default marker tool of  size and blue color
-		this.context.strokeStyle = this.tool.color;
-		this.context.lineWidth = this.tool.size*2;
-		this.context.fillStyle = this.tool.color;
+	var xPrev = null;
+	var yPrev = null;
+	canvas.on("mousemove", function(e){ //Mouse moved
+		if(down) { //If mouse is down
+			if(xPrev == null && yPrev == null) { //If the start of a new line
+				draw(e.pageX,e.pageY,e.pageX,e.pageY);
+			}
+			else { // If the line has already started
+				draw(xPrev,yPrev,e.pageX,e.pageY);
+			}
+			xPrev = e.pageX; //set the previous position
+			yPrev = e.pageY;
 	}
-
-	setTool(tool) {
-		this.tool = tool;
-		this.context.strokeStyle = this.tool.color;
-		this.context.lineWidth = this.tool.size*2;
-		this.context.fillStyle = this.tool.color;
+	});
+	canvas.on("touchmove", function(e){ //Mouse moved
+		if(down) { //If mouse is down
+			if ( e.originalEvent.changedTouches ) {
+	      		e = e.originalEvent.changedTouches[0];
+	      		x = e.pageX;
+	      		y = e.pageY;
+	    	}
+			if(xPrev == null && yPrev == null) { //If the start of a new line
+				draw(x,y,x,y);
+			}
+			else { // If the line has already started
+				draw(xPrev,yPrev,x,y);
+			}
+			xPrev = x; //set the previous position
+			yPrev = y;
+	}
+	});
+	canvas.on('mouseup mouseleave touchend',function(e){
+		down = false; //set the class variable to not down
+		xPrev = null;  //reset the previous positions of the line
+		yPrev = null;
+	});
+	
+	function setTool(toolt) {
+		tool = toolt;
+		context.strokeStyle = tool.color;
+		context.lineWidth = tool.size*2;
+		context.fillStyle = tool.color;
 		if(tool.highlighter) {
-			this.context.globalCompositeOperation = "multiply";
+			context.globalCompositeOperation = "multiply";
 		}
 		else {
-			this.context.globalCompositeOperation = "source-over";
+			context.globalCompositeOperation = "source-over";
 		}
 	}
 
-	draw(xPrev,yPrev,xPos,yPos) {
-		this.context.strokeStyle = this.tool.color;
-		this.context.lineWidth = this.tool.size*2;
-		this.context.fillStyle = this.tool.color;
-		this.context.beginPath();
-    	this.context.arc(xPrev, yPrev, this.tool.size, 0, 2 * Math.PI);
-    	this.context.fill();
-		this.context.beginPath();
-		this.context.moveTo(xPrev,yPrev);
-		this.context.lineTo(xPos,yPos);
-		this.context.stroke();
+	function draw(xPrev,yPrev,xPos,yPos) {
+		context.strokeStyle = tool.color;
+		context.lineWidth = tool.size*2;
+		context.fillStyle = tool.color;
+		context.beginPath();
+		context.arc(xPrev, yPrev, tool.size, 0, 2 * Math.PI);
+		context.fill();
+		context.beginPath();
+		context.moveTo(xPrev,yPrev);
+		context.lineTo(xPos,yPos);
+		context.stroke();
+		if($.now() - time> 5) {
+			$.ajax({
+		    method: "POST",
+		    url: "/update",
+		    data: {
+		      'x': xPrev,
+		      'y': yPrev,
+		      'x1': xPos,
+		      'y2': yPos,
+		      'color1': tool.color,
+		      'size1': tool.size,
+		      'highl': tool.highlighter,
+		    }
+		  	});
+		  	time =$.now(); 
+		}
+	}
+	class writable {
+		constructor(size,color) {
+			this.size = size;
+			this.color = color;
+		}	
 	}
 
-}
-
-class tool {
-	constructor(size,color) {
-		this.size = size;
-		this.color = color;
+	class marker extends writable {
+		constructor(size,color) {
+			super(size,color);
+			this.highlighter = false;
+		}
 	}
-	
-}
 
-class marker extends tool {
-	constructor(size,color) {
-		super(size,color);
-		this.highlighter = false;
+	class highlighter extends writable {
+		constructor(size,color) {
+			super(size,color);
+			this.highlighter = true;
+		}
 	}
-}
 
-class highlighter extends tool {
-	constructor(size,color) {
-		super(size,color);
-		this.highlighter = true;
-	}
-}
-
-
-t = document.getElementById("board");
-if(t) {
-	var whiteboard = new whiteboardObject(t);
-}
-
-
-document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 49) {
-    	whiteboard.setTool(new marker(5,"blue"));
-		var tag = document.getElementById('tag');
-		tag.innerHTML = "Size: "+whiteboard.tool.size;
-    }
-    else if(event.keyCode == 50) {
-        whiteboard.setTool(new highlighter(20,"yellow"));
-		var tag = document.getElementById('tag');
-		tag.innerHTML = "Size: "+whiteboard.tool.size;
-    }
-    else if(event.keyCode == 51) {
-        whiteboard.setTool(new marker(100,"white"));
-		
-    }
-	else if(event.keyCode == 187 || event.keyCode == 61) {
-		whiteboard.setTool(new marker(whiteboard.tool.size+5,document.getElementById('Color').value));
-		var tag = document.getElementById('tag');
-		tag.innerHTML = "Size: "+whiteboard.tool.size;
-    }
-    else if(event.keyCode == 189 || event.keyCode == 173) {
-    	if(whiteboard.tool.size >5) {
-	        whiteboard.setTool(new marker(whiteboard.tool.size-5,document.getElementById('Color').value));
+	document.addEventListener('keydown', function(event) {
+	    if(event.keyCode == 49) {
+	    	setTool(new marker(5,"blue"));
 			var tag = document.getElementById('tag');
-			tag.innerHTML = "Size: "+whiteboard.tool.size;
+			tag.innerHTML = "Size: "+tool.size;
+	    }
+	    else if(event.keyCode == 50) {
+	        setTool(new highlighter(20,"yellow"));
+			var tag = document.getElementById('tag');
+			tag.innerHTML = "Size: "+tool.size;
+	    }
+	    else if(event.keyCode == 51) {
+	        setTool(new marker(100,"white"));
+			
+	    }
+		else if(event.keyCode == 187 || event.keyCode == 61) {
+			setTool(new marker(tool.size+5,document.getElementById('Color').value));
+			var tag = document.getElementById('tag');
+			tag.innerHTML = "Size: "+tool.size;
+	    }
+	    else if(event.keyCode == 189 || event.keyCode == 173) {
+	    	if(tool.size >5) {
+		        setTool(new marker(tool.size-5,document.getElementById('Color').value));
+				var tag = document.getElementById('tag');
+				tag.innerHTML = "Size: "+tool.size;
+			}
 		}
-	}
+	});
+
+	$("#Color").change(function() {
+		setTool(new marker(tool.size,$('#Color').val()));
+	});
+
+	var tool = new marker(5,"blue"); //default marker tool of  size and blue color
+	context.strokeStyle = tool.color;
+	context.lineWidth = tool.size*2;
+	context.fillStyle = tool.color;
+
 });
 
-document.getElementById("Color").onchange = function() {
-	whiteboard.setTool(new marker(whiteboard.tool.size+5,document.getElementById('Color').value));
-	var tag = document.getElementById('tag');
-	tag.innerHTML = "Size: "+whiteboard.tool.size;
+function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
+	context.strokeStyle = color;
+	context.lineWidth = size*2;
+	context.fillStyle = color;
+	context.beginPath();
+	context.arc(xPrev, yPrev, size, 0, 2 * Math.PI);
+	context.fill();
+	context.beginPath();
+	context.moveTo(xPrev,yPrev);
+	context.lineTo(xPos,yPos);
+	context.stroke();
 }
-});
