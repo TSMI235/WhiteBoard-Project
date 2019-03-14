@@ -74,6 +74,8 @@ GEM
     execjs (2.7.0)
     ffi (1.10.0-x64-mingw32)
     ffi (1.10.0-x86-mingw32)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.5.3)
@@ -195,6 +197,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise (~> 4.2)
+  friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
   jquery-rails
   puma (~> 3.7)

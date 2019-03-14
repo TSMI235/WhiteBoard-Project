@@ -6,8 +6,8 @@ class WhiteboardsController < ApplicationController
     end
   
     def show
-        @title = Whiteboard.find(params[:id]).title
-        @whiteboard = Whiteboard.find(params[:id])
+        @title = Whiteboard.friendly.find(params[:id]).title
+        @whiteboard = Whiteboard.friendly.find(params[:id])
     end
   
     def new 
@@ -17,27 +17,27 @@ class WhiteboardsController < ApplicationController
     def create
         @whiteboard = Whiteboard.new(whiteboard_params)
         if @whiteboard.save
-            redirect_to controller: 'whiteboards', action: 'show', id: @whiteboard.id
+            redirect_to controller: 'whiteboards', action: 'show', id: @whiteboard.hash_id
         else
             render :new
         end
     end
 
     def edit
-        @whiteboard = Whiteboard.find(params[:id])
+        @whiteboard = Whiteboard.friendly.find(params[:id])
     end
 
     def update
-        @whiteboard = Whiteboard.find(params[:id])
+        @whiteboard = Whiteboard.friendly.find(params[:id])
         if @whiteboard.update(whiteboard_params)
-            redirect_to controller: 'whiteboards', action: 'show', id: @whiteboard.id, title: @whiteboard.title
+            redirect_to controller: 'whiteboards', action: 'show', id: @whiteboard.hash_id
         else
             render :edit
         end
     end
 
     def destroy
-        @whiteboard = Whiteboard.find(params[:id])
+        @whiteboard = Whiteboard.friendly.find(params[:id])
         @whiteboard.destroy
         redirect_to controller: 'home', action: 'index'
     end
