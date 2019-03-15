@@ -1,18 +1,20 @@
 //= require cable
 //= require_self
 //= require_tree .
+
 App = {};
 
 App.cable = ActionCable.createConsumer();
 
 App.messages = App.cable.subscriptions.create('DrawChannel', {
   received: function(data) {
-    drawLine(data.x, data.y, data.x1, data.y2, data.color1, data.size1, data.highl);
+  	if(hashid == data.hash) {
+    	drawLine(data.x, data.y, data.x1, data.y2, data.color1, data.size1, data.highl);
+  	}
   }
 });
 
 $(function() { 
-	
 	var time = $.now();
 	var down = false; //Class Variable to track is mouse is down
 	canvas = $("#board");
@@ -91,6 +93,7 @@ $(function() {
 		    method: "POST",
 		    url: "/update",
 		    data: {
+		      'hash': hashid,
 		      'x': xPrev,
 		      'y': yPrev,
 		      'x1': xPos,
@@ -175,4 +178,5 @@ function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
 	context.moveTo(xPrev,yPrev);
 	context.lineTo(xPos,yPos);
 	context.stroke();
+
 }

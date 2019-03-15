@@ -16,10 +16,11 @@
         }
     </style>
     <meta name="turbolinks-cache-control" content="no-preview">
-
+    <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
   </head>
 
   <body>
+        <p hidden id=hash-id><%= @whiteboard[:hash_id]%></p>
         <div id=info>
             <h3><%= @title %></h3>
             <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
@@ -39,7 +40,8 @@
         <canvas id="board"></canvas>
         </div>
 
-		<%= javascript_include_tag "board", "data-turbolinks-track" => true %>
-
   </body>
+  <script>
+        var hashid = $('#hash-id')[0].innerHTML;
+    </script>
 </html>

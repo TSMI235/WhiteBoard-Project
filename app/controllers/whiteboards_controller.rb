@@ -44,6 +44,7 @@ class WhiteboardsController < ApplicationController
 
     def showcable
         ActionCable.server.broadcast 'drawing',
+        hash: params[:hash],
         x: params[:x],
         y: params[:y],
         x1: params[:x1],
