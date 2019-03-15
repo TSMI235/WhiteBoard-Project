@@ -2,6 +2,9 @@
 
 <%= form_for @whiteboard do |f| %>
     <div>
+        <%= f.hidden_field :creator_email %> 
+    </div>
+    <div>
         <%= f.label :title %>
         <%= f.text_field :title %>
     </div>

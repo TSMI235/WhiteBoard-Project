@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190314013349) do
+ActiveRecord::Schema.define(version: 20190314032310) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 20190314013349) do
   create_table "whiteboards", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.string "creator_email"
+    t.string "hash_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "hash_id"
   end
 
 end

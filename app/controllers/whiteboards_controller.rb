@@ -1,8 +1,7 @@
 class WhiteboardsController < ApplicationController
 
-    # Might need to change to index 
     def index
-      @whiteboards = Whiteboard.all;
+      @whiteboards = Whiteboard.all
     end
   
     def show
@@ -16,6 +15,7 @@ class WhiteboardsController < ApplicationController
 
     def create
         @whiteboard = Whiteboard.new(whiteboard_params)
+        @whiteboard.creator_email = current_user.email
         if @whiteboard.save
             redirect_to controller: 'whiteboards', action: 'show', id: @whiteboard.hash_id
         else
