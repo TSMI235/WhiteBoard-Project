@@ -3,7 +3,11 @@
 one:
   title: MyString
   description: MyText
+  creator_email: MyString
+  hash_id: MyString
 
 two:
   title: MyString
   description: MyText
+  creator_email: MyString
+  hash_id: MyString

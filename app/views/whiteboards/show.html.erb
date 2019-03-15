@@ -22,6 +22,7 @@
   <body>
         <div id=info>
             <h3><%= @title %></h3>
+            <h3><%= @whiteboard.creator_email %></h3>
             <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
             <button><%= link_to "Delete Whiteboard", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
             <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
