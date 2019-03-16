@@ -46,7 +46,7 @@ class WhiteboardsController < ApplicationController
         @whiteboard = Whiteboard.friendly.find(params[:id])
     	File.open("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png", 'wb') do |f|
         f.write(params[:image].read)
-    end
+        end
     end
 
     def showcable

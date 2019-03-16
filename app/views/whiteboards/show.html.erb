@@ -20,7 +20,9 @@
     </style>
     <meta name="turbolinks-cache-control" content="no-preview">
     <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
-    <%= image_tag(@whiteboard.hash_id+'.png',:class => "hidden", :id => "savedImage")%>
+    <% if Rails.application.assets.find_asset(@whiteboard.hash_id+'.png') != nil%>
+        <%= image_tag(@whiteboard.hash_id+'.png',:class => "hidden", :id => "savedImage")%>
+    <% end %>
   </head>
 
   <body>
@@ -28,7 +30,6 @@
         <p hidden id=id><%= @whiteboard[:id]%></p>
         <div id=info>
             <h3><%= @title %></h3>
-            <h3><%= @whiteboard.creator_email %></h3>
             <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
             <button><%= link_to "Delete Whiteboard", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
             <button id=save>Save Whiteboard</button>

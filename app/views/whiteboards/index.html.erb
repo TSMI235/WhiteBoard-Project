@@ -7,7 +7,9 @@
 <% if current_user.email == whiteboard.creator_email %>
 <div class="card" style="width: 18rem; padding: 2rem;">
   <div class="card-img-top">
-    <%= image_tag(whiteboard.hash_id+'.png', width: '150px')%>
+    <% if Rails.application.assets.find_asset(whiteboard.hash_id+'.png') != nil%>
+        <%= image_tag(whiteboard.hash_id+'.png', width: '150px')%>
+    <% end %>
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= whiteboard.title %></h5>
