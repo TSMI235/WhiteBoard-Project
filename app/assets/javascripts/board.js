@@ -21,6 +21,9 @@ $(function() {
 	context = canvas[0].getContext("2d");
 	context.canvas.height = $(window).height();//set the Canvas width and Height
 	context.canvas.width = $(window).width();
+	if (image){
+		context.drawImage(image,0,0);
+	}
 	canvas.on("mousedown", function(e){
 		down = true; //set the class variable to down
 		 });
@@ -165,6 +168,34 @@ $(function() {
 	context.lineWidth = tool.size*2;
 	context.fillStyle = tool.color;
 
+
+function dataURLtoBlob(dataURL) {
+	var binary = atob(dataURL.split(',')[1]);
+	var array = [];
+	for(var i = 0; i < binary.length; i++) {
+	    array.push(binary.charCodeAt(i));
+	}
+ 	return new Blob([new Uint8Array(array)], {type: 'image/png'});
+}
+
+$("#save").click(function() {
+	saveURL(document.querySelector('#board').toDataURL());
+}
+);
+
+function saveURL(dataURL) {
+	var file= dataURLtoBlob(dataURL);
+	var fd = new FormData();
+	fd.append("image", file);
+	fd.append("id",id)
+	$.ajax({
+	   url: "/save",
+	   type: "POST",
+	   data: fd,
+	   processData: false,
+	   contentType: false,
+	});
+}
 });
 
 function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {

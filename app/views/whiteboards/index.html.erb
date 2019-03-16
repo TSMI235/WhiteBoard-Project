@@ -7,7 +7,7 @@
 <% if current_user.email == whiteboard.creator_email %>
 <div class="card" style="width: 18rem; padding: 2rem;">
   <div class="card-img-top">
-    <%= image_tag('placehold.jpg', width: '150px')%>
+    <%= image_tag(whiteboard.hash_id+'.png', width: '150px')%>
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= whiteboard.title %></h5>

@@ -14,18 +14,24 @@
             z-index:1;
             position: absolute;
         }
+        .hidden{
+            display: none;
+        }
     </style>
     <meta name="turbolinks-cache-control" content="no-preview">
     <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
+    <%= image_tag(@whiteboard.hash_id+'.png',:class => "hidden", :id => "savedImage")%>
   </head>
 
   <body>
         <p hidden id=hash-id><%= @whiteboard[:hash_id]%></p>
+        <p hidden id=id><%= @whiteboard[:id]%></p>
         <div id=info>
             <h3><%= @title %></h3>
             <h3><%= @whiteboard.creator_email %></h3>
             <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
             <button><%= link_to "Delete Whiteboard", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
+            <button id=save>Save Whiteboard</button>
             <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
 			<select ID = "Color">
 				<option value="blue">Blue</option>
@@ -44,5 +50,7 @@
   </body>
   <script>
         var hashid = $('#hash-id')[0].innerHTML;
+        var id = $('#id')[0].innerHTML;
+        var image = $('#savedImage')[0];
     </script>
 </html>

@@ -1,7 +1,7 @@
 class WhiteboardsController < ApplicationController
 
     def index
-      @whiteboards = Whiteboard.all
+      	@whiteboards = Whiteboard.all
     end
   
     def show
@@ -40,6 +40,13 @@ class WhiteboardsController < ApplicationController
         @whiteboard = Whiteboard.friendly.find(params[:id])
         @whiteboard.destroy
         redirect_to controller: 'home', action: 'index'
+    end
+
+    def save
+        @whiteboard = Whiteboard.friendly.find(params[:id])
+    	File.open("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png", 'wb') do |f|
+        f.write(params[:image].read)
+    end
     end
 
     def showcable
