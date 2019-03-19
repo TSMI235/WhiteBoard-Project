@@ -9,6 +9,10 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  Rails.application.configure do
+    config.action_cable.url = "ws://localhost:3000/cable"
+  end
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

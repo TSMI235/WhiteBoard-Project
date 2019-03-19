@@ -1,0 +1,42 @@
+
+    require 'tiny_tds'  
+        client = TinyTds::Client.new username: 'DBAdmin@csc1', password: 'Fv!055bmhs',  
+        host: 'csc1.database.windows.net', port: 1433,  
+        database: 'AdventureWorks', azure:true  
+    
+    
+        require 'tiny_tds'         
+        client = TinyTds::Client.new username: 'DBAdmin@csc1', password: 'Fv!055bmhs',  
+        host: 'csc1.database.windows.net', port: 1433,  
+        database: 'AdventureWorks', azure:true  
+        results = client.execute("SELECT c.UserID, c.PASSWORD, c.EMAIL, c.FIRST_NAME, c.LAST_NAME")  
+        results.each do |row|  
+        puts row  
+        end  
+       
+    
+        require 'tiny_tds'  
+        client = TinyTds::Client.new username: 'DBAdmin2@yourserver', password: 'Fv!055bmhs',  
+        host: 'csc1.database.windows.net', port: 1433,  
+        database: 'AdventureWorks', azure:true  
+        results = client.execute("SET ANSI_NULLS ON")  
+        results = client.execute("SET CURSOR_CLOSE_ON_COMMIT OFF")  
+        results = client.execute("SET ANSI_NULL_DFLT_ON ON")  
+        results = client.execute("SET IMPLICIT_TRANSACTIONS OFF")  
+        results = client.execute("SET ANSI_PADDING ON")  
+        results = client.execute("SET QUOTED_IDENTIFIER ON")  
+        results = client.execute("SET ANSI_WARNINGS ON")  
+        results = client.execute("SET CONCAT_NULL_YIELDS_NULL ON")  
+        results = client.execute("SET USERID ON")
+        results = client.execute("SET PASSWORD ON")
+        require 'date'  
+    
+    
+    
+        t = Time.now  
+        curr_date = t.strftime("%Y-%m-%d %H:%M:%S.%L")  
+        results = client.execute("INSERT c.UserID, c.PASSWORD, c.EMAIL, c.FIRST_NAME, c.LAST_NAME )")  
+        results.each do |row|  
+        puts row  
+        end  
+    end

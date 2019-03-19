@@ -13,4 +13,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-//= require whiteboard
+//= require whiteboards
+//= require jquery
+//= require jquery_ujs
+//= require_tree ./channels
