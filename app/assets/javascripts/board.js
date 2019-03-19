@@ -180,6 +180,7 @@ function dataURLtoBlob(dataURL) {
 
 $("#save").click(function() {
 	saveURL(document.querySelector('#board').toDataURL());
+	alert("Whiteboard successfully saved!");
 }
 );
 

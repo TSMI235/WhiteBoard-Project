@@ -1,5 +1,7 @@
 class WhiteboardsController < ApplicationController
 
+    before_action :authenticate_user!
+
     def index
       	@whiteboards = Whiteboard.all
     end
