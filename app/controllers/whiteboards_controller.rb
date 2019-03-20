@@ -40,7 +40,9 @@ class WhiteboardsController < ApplicationController
 
     def destroy
         @whiteboard = Whiteboard.friendly.find(params[:id])
-        File.delete("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png")
+        if Rails.application.assets.find_asset(@whiteboard.hash_id+'.png') != nil
+            File.delete("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png")
+        end 
         @whiteboard.destroy
         redirect_to controller: 'home', action: 'index'
     end

@@ -1,11 +1,11 @@
 <body id="signupPage">
+  <%= devise_error_messages! %>
   <div class="containerSignUp">
     <div class="formSignUp">
 
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
   <div class="email">
     <%= f.label :email %><br />

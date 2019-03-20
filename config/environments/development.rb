@@ -9,12 +9,24 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  Rails.application.configure do
-    config.action_cable.url = "ws://localhost:3000/cable"
-  end
+  #Rails.application.configure do
+  config.action_cable.url = "ws://localhost:3000/cable"
+  
+  #end
 
   # Show full error reports.
   config.consider_all_requests_local = true
+
+  
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password:ENV["GMAIL_PASSWORD"]
+  }
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

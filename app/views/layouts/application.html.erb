@@ -9,6 +9,19 @@
   </head>
 
   <body>
+    <% if flash[:alert] %>
+      <p style='padding: 5px;
+                margin: 5px;
+                text-align: center; 
+                color: white; 
+                border-radius: 10px; 
+                background: rgb(240,128,128); 
+                border: 2px solid red;
+                text-transform: uppercase;'>
+        <%= flash[:alert] %>
+      </p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
