@@ -18,9 +18,11 @@ $(function() {
 	var time = $.now();
 	var down = false; //Class Variable to track is mouse is down
 	canvas = $("#board");
+	console.log(canvas.height);
+	console.log(canvas.width);
 	context = canvas[0].getContext("2d");
-	context.canvas.height = $(window).height();//set the Canvas width and Height
-	context.canvas.width = $(window).width();
+	context.canvas.height = canvas.height();//set the Canvas width and Height
+	context.canvas.width = canvas.width();
 	if (image){
 		context.drawImage(image,0,0);
 	}

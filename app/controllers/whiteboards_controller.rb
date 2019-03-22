@@ -3,12 +3,16 @@ class WhiteboardsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-      	@whiteboards = Whiteboard.all
+        @whiteboards = Whiteboard.all
+        @userSplit = (current_user.email).split("@")
+        @username = @userSplit[0];
     end
   
     def show
-        @title = Whiteboard.friendly.find(params[:id]).title
         @whiteboard = Whiteboard.friendly.find(params[:id])
+        @title = @whiteboard.title
+        @width = @whiteboard.canvas_width
+        @height = @whiteboard.canvas_height
     end
   
     def new 
@@ -70,7 +74,7 @@ class WhiteboardsController < ApplicationController
     private
 
     def whiteboard_params
-        params.require(:whiteboard).permit(:title, :description)
+        params.require(:whiteboard).permit(:title, :description, :canvas_height, :canvas_width)
     end
   
   end

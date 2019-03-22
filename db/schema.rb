@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190314032310) do
+ActiveRecord::Schema.define(version: 20190322011837) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20190314032310) do
     t.string "hash_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "canvas_height"
+    t.integer "canvas_width"
   end
 
 end

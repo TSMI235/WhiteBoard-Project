@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>Whiteboard</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
         #info{
             z-index:10;
             position: absolute;
@@ -13,6 +17,7 @@
         #thecanvas{
             z-index:1;
             position: absolute;
+            border: 2px solid black;
         }
         .hidden{
             display: none;
@@ -42,10 +47,10 @@
 				<option value="purple">Purple</option>
 				<option value="black">Black</option>
 			</select>
-			<p ID="tag">Size: 5</>
+			<p ID="tag">Size: 5</h3>
         </div>
         <div id=thecanvas>
-        <canvas id="board"></canvas>
+        <canvas id="board" width=<%= @width %> height=<%= @height %>></canvas>
         </div>
 
   </body>

@@ -24,7 +24,7 @@
 
 		<div class="user-account-buttons">
 			<% if current_user %>
-				<%= link_to current_user.email, edit_user_registration_path, :class=>"btn btn-Dark"%>
+				<%= link_to @username, edit_user_registration_path, :class=>"btn btn-Dark"%>
 				<%= link_to 'SIGN OUT', destroy_user_session_path, method: :delete, :class=>"btn btn-Dark" %>
 			<% else %>
 				<%= link_to 'LOG IN', new_user_session_path, :class=>"btn btn-Dark" %>
