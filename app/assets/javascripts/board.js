@@ -17,6 +17,7 @@ App.messages = App.cable.subscriptions.create('DrawChannel', {
 $(function() { 
 	var time = $.now();
 	var down = false; //Class Variable to track is mouse is down
+	
 	canvas = $("#board");
 	console.log(canvas.height);
 	console.log(canvas.width);
@@ -47,6 +48,7 @@ $(function() {
 	}
 	});
 	canvas.on("touchmove", function(e){ //Mouse moved
+		e.preventDefault();
 		if(down) { //If mouse is down
 			if ( e.originalEvent.changedTouches ) {
 	      		e = e.originalEvent.changedTouches[0];
