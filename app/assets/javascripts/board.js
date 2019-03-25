@@ -17,7 +17,8 @@ App.messages = App.cable.subscriptions.create('DrawChannel', {
 $(function() { 
 	var time = $.now();
 	var down = false; //Class Variable to track is mouse is down
-	
+	var drawMode = true;
+
 	canvas = $("#board");
 	console.log(canvas.height);
 	console.log(canvas.width);
@@ -28,14 +29,15 @@ $(function() {
 		context.drawImage(image,0,0);
 	}
 	canvas.on("mousedown", function(e){
-		down = true; //set the class variable to down
+		if(drawMode) {down = true;} //set the class variable to down
 		 });
 	canvas.on("touchstart", function(e){
-		down = true; //set the class variable to down
+		if(drawMode) {down = true;} //set the class variable to down
 		});
 	var xPrev = null;
 	var yPrev = null;
 	canvas.on("mousemove", function(e){ //Mouse moved
+		if(drawMode) {
 		if(down) { //If mouse is down
 			if(xPrev == null && yPrev == null) { //If the start of a new line
 				draw(e.pageX,e.pageY,e.pageX,e.pageY);
@@ -45,24 +47,32 @@ $(function() {
 			}
 			xPrev = e.pageX; //set the previous position
 			yPrev = e.pageY;
+		}
 	}
 	});
 	canvas.on("touchmove", function(e){ //Mouse moved
-		e.preventDefault();
-		if(down) { //If mouse is down
-			if ( e.originalEvent.changedTouches ) {
-	      		e = e.originalEvent.changedTouches[0];
-	      		x = e.pageX;
-	      		y = e.pageY;
-	    	}
-			if(xPrev == null && yPrev == null) { //If the start of a new line
-				draw(x,y,x,y);
-			}
-			else { // If the line has already started
-				draw(xPrev,yPrev,x,y);
-			}
-			xPrev = x; //set the previous position
-			yPrev = y;
+		if(drawMode) {
+			// Prevents user from scrolling
+			e.preventDefault();
+			if(down) { //If mouse is down
+				if ( e.originalEvent.changedTouches ) {
+							e = e.originalEvent.changedTouches[0];
+							x = e.pageX;
+							y = e.pageY;
+					}
+				if(xPrev == null && yPrev == null) { //If the start of a new line
+					draw(x,y,x,y);
+				}
+				else { // If the line has already started
+					draw(xPrev,yPrev,x,y);
+				}
+				xPrev = x; //set the previous position
+				yPrev = y;
+		}
+	}
+	else {
+		// Lets user scroll again, no drawing.
+		$(document).unbind('touchmove');
 	}
 	});
 	canvas.on('mouseup mouseleave touchend',function(e){
@@ -185,8 +195,16 @@ function dataURLtoBlob(dataURL) {
 $("#save").click(function() {
 	saveURL(document.querySelector('#board').toDataURL());
 	alert("Whiteboard successfully saved!");
-}
-);
+});
+
+$('#drawmode').click(function() {
+	drawMode = !drawMode;
+	var drawModeButton = document.getElementById('drawmode');
+	if(drawMode) 
+		drawModeButton.style.backgroundColor = 'green';
+	else
+		drawModeButton.style.backgroundColor = 'red';
+});
 
 function saveURL(dataURL) {
 	var file= dataURLtoBlob(dataURL);
