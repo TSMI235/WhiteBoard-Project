@@ -10,39 +10,36 @@
 		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" > 
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/main.css">
 
 	</head>
 	<body>
-	<div class="home-info-buttons">
-		<div class="nav-buttons">
-			<%= link_to 'INFORMATION', "../home/info", :class=>"btn btn-Dark" %>
-			<%= link_to 'MY WHITEBOARDS', '../whiteboards', :class=> "btn btn-Dark" %>
-			<%= link_to 'CREATE NEW', '../whiteboards/new', :class=> "btn btn-Dark" %>
-		</div>
+		<!-- navbar -->  
+	<nav class="navbar navbar-inverse">
+ 		<div class="container-fluid">
+   		 <div class="navbar-header">
+      		<a class="navbar-brand">WhiteBoard</a>
+    		</div>
+    		<ul class="nav navbar-nav">
+     		<li class="active"><a href="#">Home</a></li>
+     		 <li><a href="#">Create New</a></li>
+   		</ul>
+    		<ul class="nav navbar-nav navbar-right">
+     		 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+     		<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+   		     </ul>
+  		</div>
+	</nav>
 
-		<div class="user-account-buttons">
-			<% if current_user %>
-				<%= link_to @username, edit_user_registration_path, :class=>"btn btn-Dark"%>
-				<%= link_to 'SIGN OUT', destroy_user_session_path, method: :delete, :class=>"btn btn-Dark" %>
-			<% else %>
-				<%= link_to 'LOG IN', new_user_session_path, :class=>"btn btn-Dark" %>
-				<%= link_to 'SIGN UP', new_user_registration_path, :class=>"btn btn-Dark" %>
-			<% end %>
-		</div>
-	</div>
 
-
-		<div class="container main-header">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="jumbotron">
-  						<h1>Welcome to Whiteboard!</h1>
-  						<p>Collaborating Whiteboard</p>
-				</div>
-				</div>
+		<div class="description ">
+   			<h1> WELCOME TO WHTIEBOARD
+   			 <div class = "boxed" >
+    				<p>    Collaboration with users or coworkers on the internet often times requires someone to draw out or sketch their ideas. While using image creation tool and sending the image can work, having to save, upload, and host the image to send to another user is a pain. If you want to point out in real time to the other user, (such as pointing on an actual whiteboard), you are out of luck. Whiteboard allows users access to a real-time whiteboard collaboration tool, where the sketches you draw on the whiteboard appear on the screens of those who are collaborating with. And if any contributor has an idea to give, they can write in on the board for everyone to see. All the user has to do is create a new whiteboard on the site, and send the link over to whoever they want to collaborate with.
+					</p>   
 			</div>
-	
-</div>
+ 		<button class="btn btn-outline-secondary btn-lg">SIGN UP</button>   </h1>  
+		</div>
 
 
 	<!-- Javascript files should be linked at the bottom of the page --> 
