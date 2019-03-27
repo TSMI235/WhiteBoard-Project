@@ -1,17 +1,42 @@
-<h3>Edit Whiteboard</h3>
+<!DOCTYPE html>
+<h2>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up</title>
+  <link rel = "stylesheet" href="app/assets/stylesheets/bootstrap.min.css" />
+  <link rel = "stylesheet" type="text/css" href="app/assets/stylesheets/whiteboardNew" />
+</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+     <div class="col-md-4 col-sm-4 col-xs-12">
 
-<%= form_for @whiteboard do |f| %>
-    <div>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-    </div>
+        <%= form_for @whiteboard, html: {:class => 'form-container'} do |f| %>
+          <h3>Edit Whiteboard</h3>
+          <div>
+             <%= f.hidden_field :creator_email %>
+            </div>
 
-    <div>
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-    </div>
-    
-    <div>
-        <%= f.submit %>
-    </div>
-<% end %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class:'form-control', placeholder: 'title' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_field :description, class:'form-control', placeholder:'description' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "Edit Whiteboard", class:'btn btn-success btn-block' %>
+          </div>
+
+        <% end %>
+
+      </div>
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+  </div>
+</div
+  <script src="/assets/javascripts/jquery.min.js"></script>
+  <script src="/assets/javascripts/bootstrap.min.js"></script>
+</html>
