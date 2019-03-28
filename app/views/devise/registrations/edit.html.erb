@@ -1,51 +1,57 @@
-<body id='editUserPage'>
-<%= devise_error_messages! %>
-<div class="containerEditUser">
-<div class="formEditUser">
+<h2>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Update</title>
+  <link rel = "stylesheet" href="app/assets/stylesheets/bootstrap.min.css" />
+  <link rel = "stylesheet" type="text/css" href="app/assets/stylesheets/editAccount.css"/>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+     <div class="col-md-4 col-sm-4 col-xs-12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container"}) do |f| %>
+        <%= resource_name.to_s.humanize %>
+        <h3>Update</h3>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control', placeholder:'email-address' %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="form-group">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder:"new password" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+          <div class="form-groupt">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control',placeholder:"new password" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+          <div class="form-group">
+            <%= f.label :current_password %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class:'form-control', placeholder:"currrent password" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
-
-</div>
-</div>
-</body>
+          <div class="form-group">
+            <%= f.submit "Update", class:'btn btn-success btn-block' %>
+          </div>
+          <div class="form-group">
+            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class:"btn btn-danger btn-block",remote: true %>
+          </div>
+      <% end %>
+            </div>
+          <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+      </div
+        <script src="/assets/javascripts/jquery.min.js"></script>
+        <script src="/assets/javascripts/bootstrap.min.js"></script>
+</html>
