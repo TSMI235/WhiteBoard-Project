@@ -20,8 +20,6 @@ $(function() {
 	var drawMode = true;
 
 	canvas = $("#board");
-	console.log(canvas.height);
-	console.log(canvas.width);
 	context = canvas[0].getContext("2d");
 	context.canvas.height = canvas.height();//set the Canvas width and Height
 	context.canvas.width = canvas.width();
@@ -194,11 +192,6 @@ function dataURLtoBlob(dataURL) {
 	}
  	return new Blob([new Uint8Array(array)], {type: 'image/png'});
 }
-
-$("#save").click(function() {
-	saveURL(document.querySelector('#board').toDataURL());
-	alert("Whiteboard successfully saved!");
-});
 
 $('#drawmode').click(function() {
 	drawMode = !drawMode;
