@@ -28,7 +28,7 @@ $(function() {
 	$('#savedImage').on('load', function() {
 		context.drawImage($('#savedImage')[0],0,0);
 	});
-	if($('#savedImage') !== null){
+	if($('#savedImage') != null){
 		context.drawImage($('#savedImage')[0],0,0);
 	}
 	canvas.on("mousedown", function(e){
@@ -202,7 +202,7 @@ $("#save").click(function() {
 
 $('#drawmode').click(function() {
 	drawMode = !drawMode;
-	var drawModeButton = $('drawmode');
+	var drawModeButton = document.getElementById('drawmode');
 	if(drawMode) 
 		drawModeButton.style.backgroundColor = 'green';
 	else
