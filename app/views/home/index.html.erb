@@ -4,7 +4,6 @@
 		<meta charset="utf-8"/>
 		<title>Bootstrap grid </title> 
 
-
 		<!-- We link the CDN css files here --> 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" > 
@@ -12,20 +11,14 @@
 		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
 		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/main.css">
 
-		
-	body{
-    		background-image: url("http://www.siue.edu/~mhallor/madisonrobertsphotography1/background.png");
-    		background-size: 100;
-}
-</style>
 	</head>
-	<body>
+	<body class = "home-page">
 		<!-- navbar -->  
 	<nav class="navbar navbar-inverse">
  		<div class="container-fluid">
    		 <div class="navbar-header">
       		<a class="navbar-brand">WhiteBoard</a>
-    		</div>
+    	</div>
     		<ul class="nav navbar-nav">
      		<li class="active"><a href="../home/index">Home</a></li>
      		 <li><a href="../whiteboards">My Whiteboards</a></li>
@@ -41,21 +34,34 @@
 			</ul>
   		</div>
 	</nav>
+	<div class=" description ">
+   		<h1> WELCOME TO WHITEBOARD</h1>
+		<h2> A Collabotative Whiteboard</h2>
+   	<div class="container text-center">    
+  		<h3>How it works</h3>
+<br>
+  	<div class="row">
+    	<div class="col-sm-4">
+      		<img src="http://chittagongit.com//images/sign-up-icon-png/sign-up-icon-png-28.jpg" class="img-responsive" style="width:100%" alt="Image">
+      		<p>Easy sign up - All you need is an email! </p>
+    	</div>
+    	<div class="col-sm-4"> 
+      		<img src="https://image.flaticon.com/icons/png/512/33/33592.png" class="img-responsive" style="width:100%" alt="Image">
+      		<p>Start making whiteboards for personal ideas or drawings to share with others. </p>    
+    	</div>
+    	<div class="col-sm-4">
+      		<img src="https://www.freeiconspng.com/uploads/black-circle-social-media-share-icon-png-25.png" class="img-responsive" style="width:100%" alt="Image">
+      		<p>Share your whiteboard with others were they can see your drawings and make changes </p>
+    	</div>
+  </div>
+<br>
 
-
-		<div class="description ">
-   			<h1> WELCOME TO WHITEBOARD</h1>
-   			 <div class = "boxed" >
-    				<p>    Collaboration with users or coworkers on the internet often times requires someone to draw out or sketch their ideas. While using image creation tool and sending the image can work, having to save, upload, and host the image to send to another user is a pain. If you want to point out in real time to the other user, (such as pointing on an actual whiteboard), you are out of luck. Whiteboard allows users access to a real-time whiteboard collaboration tool, where the sketches you draw on the whiteboard appear on the screens of those who are collaborating with. And if any contributor has an idea to give, they can write in on the board for everyone to see. All the user has to do is create a new whiteboard on the site, and send the link over to whoever they want to collaborate with.
-					</p>   
-			</div>
 		<% if current_user %>
-			<a href="../whiteboards/new"><button class="btn btn-outline-secondary btn-lg">CREATE NEW</button></a>
+			<a href="../whiteboards/new"><button class="btn btn-secondary btn-lg">CREATE NEW</button></a>
 		<% else %>
- 			<a href=""><button class="btn btn-outline-secondary btn-lg">SIGN UP</button></a>  
+ 			<a href=""><button class="btn btn-secondary btn-lg">SIGN UP</button></a>  
 		<% end %>
-		</div>
-
+		
 
 	<!-- Javascript files should be linked at the bottom of the page --> 
 		<script src="/assets/javascripts/jquery.min.js"></script>
