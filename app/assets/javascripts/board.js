@@ -25,8 +25,11 @@ $(function() {
 	context = canvas[0].getContext("2d");
 	context.canvas.height = canvas.height();//set the Canvas width and Height
 	context.canvas.width = canvas.width();
-	if (image){
-		context.drawImage(image,0,0);
+	$('#savedImage').on('load', function() {
+		context.drawImage($('#savedImage')[0],0,0);
+	});
+	if($('#savedImage') !== null){
+		context.drawImage($('#savedImage')[0],0,0);
 	}
 	canvas.on("mousedown", function(e){
 		if(drawMode) {down = true;} //set the class variable to down
