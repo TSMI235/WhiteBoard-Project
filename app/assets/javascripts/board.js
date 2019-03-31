@@ -71,13 +71,13 @@ $(function() {
 				}
 				xPrev = x; //set the previous position
 				yPrev = y;
+			}
 		}
-	}
-	else {
-		// Lets user scroll again, no drawing.
-		$(document).unbind('touchmove');
-	}
-	});
+		else {
+			// Lets user scroll again, no drawing.
+			$(document).unbind('touchmove');
+		}
+		});
 	canvas.on('mouseup mouseleave touchend',function(e){
 		down = false; //set the class variable to not down
 		xPrev = null;  //reset the previous positions of the line
@@ -202,7 +202,7 @@ $("#save").click(function() {
 
 $('#drawmode').click(function() {
 	drawMode = !drawMode;
-	var drawModeButton = document.getElementById('drawmode');
+	var drawModeButton = $('drawmode');
 	if(drawMode) 
 		drawModeButton.style.backgroundColor = 'green';
 	else
