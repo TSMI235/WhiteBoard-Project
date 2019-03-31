@@ -202,6 +202,11 @@ $('#drawmode').click(function() {
 		drawModeButton.style.backgroundColor = 'red';
 });
 
+$("#save").click(function() {
+	saveURL(document.querySelector('#board').toDataURL());
+}
+);
+
 function saveURL(dataURL) {
 	var file= dataURLtoBlob(dataURL);
 	var fd = new FormData();
