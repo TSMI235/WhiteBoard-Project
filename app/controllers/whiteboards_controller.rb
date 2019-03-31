@@ -13,6 +13,8 @@ class WhiteboardsController < ApplicationController
         @title = @whiteboard.title
         @width = @whiteboard.canvas_width
         @height = @whiteboard.canvas_height
+        s3 = Aws::S3::Client.new
+        @image = s3.get_object(bucket: ENV['S3_BUCKET_NAME'], key: '11').body
     end
   
     def new 
@@ -52,10 +54,9 @@ class WhiteboardsController < ApplicationController
     end
 
     def save
+        obj = S3_BUCKET.object(params[:id])
         @whiteboard = Whiteboard.friendly.find(params[:id])
-    	File.open("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png", 'wb') do |f|
-        f.write(params[:image].read)
-        end
+        obj.put({acl:'public-read',body: params[:image].read})
     end
 
     def showcable

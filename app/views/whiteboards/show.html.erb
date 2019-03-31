@@ -25,9 +25,8 @@
     </style>
     <meta name="turbolinks-cache-control" content="no-preview">
     <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
-    <% if Rails.application.assets.find_asset(@whiteboard.hash_id+'.png') != nil%>
-        <%= image_tag(@whiteboard.hash_id+'.png',:class => "hidden", :id => "savedImage")%>
-    <% end %>
+    <img src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= @whiteboard.id%>?<%= rand(0..1000) %>" crossorigin="anonymous" class = "hidden" id = "savedImage">
+
   </head>
 
   <body>
@@ -58,6 +57,5 @@
   <script>
         var hashid = $('#hash-id')[0].innerHTML;
         var id = $('#id')[0].innerHTML;
-        var image = $('#savedImage')[0];
     </script>
 </html>
