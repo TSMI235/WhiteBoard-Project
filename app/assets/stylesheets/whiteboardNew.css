@@ -1,4 +1,7 @@
-*{color: #fff;}
+.bg{
+    background-image: url("http://www.siue.edu/~mhallor/madisonrobertsphotography1/background.png");
+    background-size: 100;
+    color: #fff;}
 .form-container{
     width: 360px;
     padding: 8% 0 0;
