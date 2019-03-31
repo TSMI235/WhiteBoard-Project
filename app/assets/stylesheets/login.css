@@ -1,40 +1,13 @@
-.containerLogin, .containerSignUp {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-
-.containerEditUser {
-  width: 480px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-
-.formLogin, .formSignUp, .formEditUser {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-.email, .password, .passwordConfirmation, .field {
-
-  background: #f2f2f2;
-  width: 100%;
-  height: 50%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-
-
-
-
-#loginPage, #signupPage, #editUserPage {
-  background-color: #3561a8;
+.bg{
+    background-image: url("http://www.siue.edu/~mhallor/madisonrobertsphotography1/background.png");
+    background-size: 100;
+    color: #fff;}
+.form-container{
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+    border:0px solid #fff; padding:50px 60px; margin-top:20vh;
+    -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 26px 11px rgba(0,0,0,0,0.75)
 }
