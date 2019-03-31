@@ -13,8 +13,6 @@ class WhiteboardsController < ApplicationController
         @title = @whiteboard.title
         @width = @whiteboard.canvas_width
         @height = @whiteboard.canvas_height
-        s3 = Aws::S3::Client.new
-        @image = s3.get_object(bucket: ENV['S3_BUCKET_NAME'], key: '11').body
     end
   
     def new 
