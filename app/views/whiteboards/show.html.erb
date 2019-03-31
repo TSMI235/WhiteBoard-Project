@@ -24,6 +24,7 @@
         }
     </style>
     <meta name="turbolinks-cache-control" content="no-preview">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
     <img src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= @whiteboard.id%>?<%= rand(0..1000) %>" crossorigin="anonymous" class = "hidden" id = "savedImage">
 
