@@ -38,10 +38,11 @@
 .home-page .description h2,h3{
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px; 
+    color:#f5f5f5;
 }
 .home-page .description p{
     font-family:'Courier New', Courier, monospace;
-	text-align: center;
+    text-align: center;
     margin: auto;
     padding: 1em;
     color:#f5f5f5;
