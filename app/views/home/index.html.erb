@@ -55,10 +55,12 @@
     	</div>
   </div>
 <br>
-<form class="form-inline">
-  <i class="fas fa-search" aria-hidden="true"></i>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Find a whiteboard" aria-label="Search">
-</form>
+	<div class="input-group">
+		<input id="home-search-bar" type="text" class="form-control", placeholder="Enter Whiteboard id...", spellcheck="false">
+		<span class="input-group-btn">
+			<button id="home-page-search-button" class="btn btn-default" type="button" style="margin-top: 0;">Go!</button>
+		</span>
+	</div>
 		<% if current_user %>
 			<a href="../whiteboards/new"><button class="btn btn-secondary btn-lg">CREATE NEW</button></a>
 		<% else %>
@@ -71,4 +73,32 @@
 	<!-- Latest compiled and minified JavaScript -->
 		<script src="/assets/javascripts/bootstrap.min.js"></script>
 	</body>
+
+	<script>
+		$('#home-page-search-button').click(function() {
+			var wbpath = document.getElementById('home-search-bar').value;
+			var actualPath = 'https://csc3380whiteboard.herokuapp.com/whiteboards/' + wbpath;
+
+			$.ajax({
+				type: 'HEAD',
+				url: actualPath,
+				success: function() {
+					window.location.assign(actualPath);
+				},
+				error: function() {
+					var obj = document.getElementById('home-search-bar');
+					var origBorder = obj.style.border;
+					var origColor = obj.style.color;
+
+					obj.style.border = "2px solid red";
+					obj.style.color = "red";
+
+					setTimeout(function() {
+						obj.style.border = origBorder;
+						obj.style.color = origColor;
+					}, 3000);
+				}
+			});
+		});
+	</script>
 </html>
