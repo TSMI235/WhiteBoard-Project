@@ -72,33 +72,41 @@
 		<script src="/assets/javascripts/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 		<script src="/assets/javascripts/bootstrap.min.js"></script>
-	</body>
-</html>
 
-<script>
-	$('#home-page-search-button').click(function() {
-		var wbpath = document.getElementById('home-search-bar').value;
-		var actualPath = 'https://csc3380whiteboard.herokuapp.com/whiteboards/' + wbpath;
-		alert(actualPath);
-		$.ajax({
-			type: 'HEAD',
-			url: actualPath,
-			success: function() {
-				window.location.assign(actualPath);
-			},
-			error: function() {
-				var obj = document.getElementById('home-search-bar');
-				var origBorder = obj.style.border;
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script>
+			function changeSearchBarColors(id) {
+				var obj = document.getElementById(id);
+				var origBorder = obj.style.borderBottom;
 				var origColor = obj.style.color;
-
-				obj.style.border = "2px solid red";
+				obj.style.borderBottom = "2px solid red";
 				obj.style.color = "red";
-
-				setTimeout(function() {
-					obj.style.border = origBorder;
+				setTimeout(function(){
 					obj.style.color = origColor;
+					obj.style.borderBottom = origBorder;
 				}, 3000);
 			}
-		});
-	});
-</script>
+
+			$("#home-page-search-button").click(function() {
+				var wbpath = document.getElementById('home-search-bar').value;
+				var actualPath = 'https://csc3380whiteboard.herokuapp.com/whiteboards/' + wbpath;
+
+				if(actualPath == 'https://csc3380whiteboard.herokuapp.com/whiteboards/') {
+					changeSearchBarColors('home-search-bar')
+				} 
+				else {
+					$.ajax({
+						type: 'HEAD',
+						url: actualPath,
+						success: function() {
+							window.location.assign(actualPath);
+						},
+						error: function() {
+							changeSearchBarColors('home-search-bar');
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
