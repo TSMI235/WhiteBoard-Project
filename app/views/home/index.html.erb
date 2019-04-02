@@ -64,7 +64,7 @@
 		<% if current_user %>
 			<a href="../whiteboards/new"><button class="btn btn-secondary btn-lg">CREATE NEW</button></a>
 		<% else %>
- 			<a href=""><button class="btn btn-secondary btn-lg">SIGN UP</button></a>  
+ 			<a href=<%= new_user_registration_path %>><button class="btn btn-secondary btn-lg">SIGN UP</button></a>  
 		<% end %>
 		
 
@@ -73,32 +73,32 @@
 	<!-- Latest compiled and minified JavaScript -->
 		<script src="/assets/javascripts/bootstrap.min.js"></script>
 	</body>
-
-	<script>
-		$('#home-page-search-button').click(function() {
-			var wbpath = document.getElementById('home-search-bar').value;
-			var actualPath = 'https://csc3380whiteboard.herokuapp.com/whiteboards/' + wbpath;
-
-			$.ajax({
-				type: 'HEAD',
-				url: actualPath,
-				success: function() {
-					window.location.assign(actualPath);
-				},
-				error: function() {
-					var obj = document.getElementById('home-search-bar');
-					var origBorder = obj.style.border;
-					var origColor = obj.style.color;
-
-					obj.style.border = "2px solid red";
-					obj.style.color = "red";
-
-					setTimeout(function() {
-						obj.style.border = origBorder;
-						obj.style.color = origColor;
-					}, 3000);
-				}
-			});
-		});
-	</script>
 </html>
+
+<script>
+	$('#home-page-search-button').click(function() {
+		var wbpath = document.getElementById('home-search-bar').value;
+		var actualPath = 'https://csc3380whiteboard.herokuapp.com/whiteboards/' + wbpath;
+		alert(actualPath);
+		$.ajax({
+			type: 'HEAD',
+			url: actualPath,
+			success: function() {
+				window.location.assign(actualPath);
+			},
+			error: function() {
+				var obj = document.getElementById('home-search-bar');
+				var origBorder = obj.style.border;
+				var origColor = obj.style.color;
+
+				obj.style.border = "2px solid red";
+				obj.style.color = "red";
+
+				setTimeout(function() {
+					obj.style.border = origBorder;
+					obj.style.color = origColor;
+				}, 3000);
+			}
+		});
+	});
+</script>
