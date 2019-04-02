@@ -77,13 +77,13 @@
 		<script>
 			function changeSearchBarColors(id) {
 				var obj = document.getElementById(id);
-				var origBorder = obj.style.borderBottom;
+				var origBorder = obj.style.border;
 				var origColor = obj.style.color;
-				obj.style.borderBottom = "2px solid red";
+				obj.style.border = "2px solid red";
 				obj.style.color = "red";
 				setTimeout(function(){
 					obj.style.color = origColor;
-					obj.style.borderBottom = origBorder;
+					obj.style.border = origBorder;
 				}, 3000);
 			}
 
