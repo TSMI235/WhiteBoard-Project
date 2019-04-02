@@ -6,10 +6,10 @@
 
     <!-- We link the CDN css files here --> 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href=" app/assets/stylesheets/bootstrap.min.css" > 
+    <link rel="stylesheet" href=" app/assets/stylesheets/bootstrap.min2.css" > 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme2.min.css">
+    <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/main2.css">
 
   </head>
 
@@ -32,7 +32,7 @@
   <h1>Your Whiteboards</h1>
    
   <a href="../home/index"><button class="btn btn-outline-secondary btn-lg">HOME</button></a>
-  <a href='../whiteboards/new'><button class ="btn btn-outline-secondary btn-lg">CREATE WHITEBOARD</button></a>
+  <a href=<% new_whiteboard_path %><button class ="btn btn-outline-secondary btn-lg">CREATE WHITEBOARD</button></a>
 
 
 <% @whiteboards.each do |whiteboard| %>
