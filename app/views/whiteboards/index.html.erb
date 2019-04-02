@@ -27,7 +27,7 @@
 <% if current_user.email == whiteboard.creator_email %>
 <div class="card" style="width: 18rem; padding: 2rem;">
   <div class="card-img-top">
-    <p> These are your saved WhiteBoards</p>
+    
     	<img class="whiteboard-image" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  crossorigin="anonymous" width= "150px" height= "150px" >
   </div>
   <div class="card-body">
