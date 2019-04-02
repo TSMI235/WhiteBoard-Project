@@ -34,12 +34,33 @@
         <p hidden id=hash-id><%= @whiteboard[:hash_id]%></p>
         <p hidden id=id><%= @whiteboard[:id]%></p>
         <div id=info>
-            <h3><%= @title %></h3>
-            <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
-            <button><%= link_to "Delete Whiteboard", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
-            <button id="drawmode" style="background-color: green;">DRAW MODE</button>
-            <button id='save'>Save Whiteboard</button>
-            <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand">WhiteBoard</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="../home/index">Home</a></li>
+						<li><a href="../whiteboards">My Whiteboards</a></li>
+						<div class="btn-group" id=info>
+							<button type="button" class="btn btn-inverse navbar-btn role="button"><%= link_to "Edit", edit_whiteboard_path(@whiteboard) %></button>
+							<button type="button" class="btn btn-inverse navbar-btn role="button"><%= link_to "Delete", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
+							<button type="button" class="btn btn-inverse navbar-btn role="button" id='save'>Save</button>
+						</div>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<% if current_user %>
+							<li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span><%= @username %></a></li>
+							<li><a class="glyphicon" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
+						<% else %>
+							<li><a href=<%= new_user_registration_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							<li><a href=<%= new_user_session_path %>><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<% end  %>
+					</ul>
+				</div>
+			</nav>
+			<p style="margin-top:65px">
+			<button id="drawmode" style="background-color: green;">DRAW MODE</button>
 			<select ID = "Color">
 				<option value="blue">Blue</option>
 				<option value="red">Red</option>
@@ -48,7 +69,10 @@
 				<option value="purple">Purple</option>
 				<option value="black">Black</option>
 			</select>
-			<p ID="tag">Size: 5</h3>
+			<p ID="tag">Size: 5</p>
+			<p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
+			<p></p>
+			<h3><%= @title %></h3>
         </div>
         <div id=thecanvas>
         <canvas id="board" width=<%= @width %> height=<%= @height %>></canvas>
