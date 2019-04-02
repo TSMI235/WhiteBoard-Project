@@ -1,29 +1,28 @@
-.bg-dark{
-	background-color: #C0B283;
-}
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
-/*header style*/
 
-body{
+.home-page {
 	background-image: url("http://www.siue.edu/~mhallor/madisonrobertsphotography1/background.png");
-	background-color: #cccccc;
-
+    background-size: 100;
 }
 
-
-
-.overlay{
+.home-page .overlay{
  position: absolute;
  min-height: 100%;
  min-width: 100%;
  left: 0;
  top: 0;
- background: rgba(244, 244, 244, 0.79);
+ background: rgba(244, 244, 244, 0);
 }
 
 
+<<<<<<< HEAD
 .description{
     text-align: center;
+=======
+.home-page .description{
+    text-align: center; 
+>>>>>>> parent of 81fa727... Bootstrap for Index
     top: 50%;
     left: 50%;
     transition: translate(-50%, -50%);
@@ -31,19 +30,25 @@ body{
     padding: 0em;
     margin-bottom: 2em;
 }
-.description h1{
-    font-family: 'Merriweather', serif;
-	text-align: center;
+.home-page .description h1{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    padding-top: 2em; 
     top: 50%;
     left: 50%;
     transition: translate(-50%, -50%);
     margin: auto;
     font-size:50px;
-    padding: 1em;
- color:#f5f5f5;
+    color:#f5f5f5;
 }
-.description p{
-	text-align: center;
+.home-page .description h2,h3{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px; 
+    color:#f5f5f5;
+}
+.home-page .description p{
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
     margin: auto;
     padding: 1em;
     color:#f5f5f5;
@@ -51,6 +56,7 @@ body{
     width: 90%;
     line-height: 1.5;
 }
+<<<<<<< HEAD
 .description button{
  border:1px  solid #262626;
  background: #262626;
@@ -99,4 +105,12 @@ color: #f5f5f5;
 font-size: 21px;
 line-height: 32px;
 font-weight: 400;
+=======
+.home-page .description button{
+    border:1px  solid #262626;
+    background: #262626;
+    color:#f5f5f5;
+    margin-top: 2em; 
+
+>>>>>>> parent of 81fa727... Bootstrap for Index
 }
