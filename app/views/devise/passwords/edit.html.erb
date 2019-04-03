@@ -1,35 +1,61 @@
-<body id="signupPage">
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset ="utf-8"/>
+    <title>Bootstrap grid</title>
+
+    <!-- We link the CDN css files here -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" >
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/WhiteBoardIndex.css">
+
+  </head>
+
+<body class="bg">
   <%= devise_error_messages! %>
-  <div class="containerSignUp">
-    <div class="formSignUp">
+   <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+     <div class="col-md-4 col-sm-4 col-xs-12">
 
-      <h2>Change your password</h2>
 
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class:'form-container', method: :put }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
-
-        <div class="field">
+      <h2>Change your password</h2>
+        <div class="form-group">
           <%= f.label :password, "New password" %><br />
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em><br />
           <% end %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control' %>
         </div>
 
-        <div class="field">
+        <div class="form-group">
           <%= f.label :password_confirmation, "Confirm new password" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "Change my password" %>
+        <div class="form-group">
+          <%= f.submit "Change my password", class: 'btn btn-success btn-block' %>
         </div>
 
         <div>
-          <%= render "devise/shared/links" %>
+          <%= render "devise/shared/links"%>
         </div>
       <% end %>
-
-    </div>
-  </div>
+       <!-- Javascript files should be linked at the bottom of the page -->
+    <script src="/assets/javascripts/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+    <script src="/assets/javascripts/bootstrap.min.js"></script>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
+ </html>
