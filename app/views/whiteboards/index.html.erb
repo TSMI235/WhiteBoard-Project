@@ -3,20 +3,23 @@
   <head>
     <meta charset ="utf-8"/>
     <title>Bootstrap grid</title>
-      
+
+    <body class = 'bg-dark'>
+
     <!-- We link the CDN css files here --> 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href=" app/assets/stylesheets/bootstrap.min.css" > 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" >
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/WhiteBoardIndex.css">
     
   </head>
   
+
   <body class = “index-page” >
-  
-  
+
   <h1>Your Whiteboards</h1>
-   
+  
   <a href="../home/index"><button class="btn btn-outline-secondary btn-lg">HOME</button></a>
   <a href="../whiteboards/new"><button class ="btn btn-outline-secondary btn-lg">CREATE WHITEBOARD</button></a>
 
@@ -26,7 +29,7 @@
 <div class="card" style="width: 18rem; padding: 2rem;">
   <div class="card-img-top">
     
-    	<img class="whiteboard-image" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  crossorigin="anonymous" width= "150px" height= "150px" >
+      <img class="whiteboard-image" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  crossorigin="anonymous" width= "150px" height= "150px" >
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= whiteboard.title %></h5>
@@ -42,7 +45,7 @@
   <!-- Latest compiled and minified JavaScript -->
     <script src="/assets/javascripts/bootstrap.min.js"></script>
 
-
 </body>
-  </body>
+</body>
 </html>
+
