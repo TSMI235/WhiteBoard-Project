@@ -47,7 +47,7 @@
 <div class="card" style="width: 18rem; padding: 2rem;">
   <div class="card-img-top">
     
-      <img class="whiteboard-image" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  crossorigin="anonymous" width= "150px" height= "150px" >
+      <img class="whiteboard-image" onerror="this.src='no-save-image.jpg'" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  crossorigin="anonymous" width= "150px" height= "150px" >
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= whiteboard.title %></h5>
