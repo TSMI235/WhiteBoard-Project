@@ -15,11 +15,15 @@ App.messages = App.cable.subscriptions.create('DrawChannel', {
 });
 
 $(function() { 
+
 	var time = $.now();
 	var down = false; //Class Variable to track is mouse is down
 	var drawMode = true;
+	var currentColor = "blue";
 
 	canvas = $("#board");
+	console.log(canvas.height);
+	console.log(canvas.width);
 	context = canvas[0].getContext("2d");
 	context.canvas.height = canvas.height();//set the Canvas width and Height
 	context.canvas.width = canvas.width();
@@ -69,13 +73,13 @@ $(function() {
 				}
 				xPrev = x; //set the previous position
 				yPrev = y;
-			}
 		}
-		else {
-			// Lets user scroll again, no drawing.
-			$(document).unbind('touchmove');
-		}
-		});
+	}
+	else {
+		// Lets user scroll again, no drawing.
+		$(document).unbind('touchmove');
+	}
+	});
 	canvas.on('mouseup mouseleave touchend',function(e){
 		down = false; //set the class variable to not down
 		xPrev = null;  //reset the previous positions of the line
@@ -92,6 +96,16 @@ $(function() {
 		}
 		else {
 			context.globalCompositeOperation = "source-over";
+		}
+	}
+
+	function changeToolColor(color) {
+		document.getElementById("myModal").style.display = "none";
+		if(document.getElementById('marker').style.color == 'rgb(246, 76, 114)') {
+			currentColor = color;
+			setTool(new marker(tool.size,color));
+		} else {
+			alert("Cannot change color of eraser/highlighter!");
 		}
 	}
 
@@ -145,7 +159,7 @@ $(function() {
 		}
 	}
 
-	document.addEventListener('keydown', function(event) {
+	/*document.addEventListener('keydown', function(event) {
 	    if(event.keyCode == 49) {
 	    	setTool(new marker(5,"blue"));
 			var tag = document.getElementById('tag');
@@ -176,6 +190,85 @@ $(function() {
 
 	$("#Color").change(function() {
 		setTool(new marker(tool.size,$('#Color').val()));
+	});*/
+
+	var modal = document.getElementById("myModal");
+
+	$('#marker').click(function() {
+		setTool(new marker(5,"blue"));
+		changeClassButtonColor('wb-button', 'rgb(125,99,143)');
+		changeSingleButtonColor('marker', '#F64C72');
+	});
+	
+	$('#highlighter').click(function() {
+		setTool(new highlighter(20,"yellow"));
+		changeClassButtonColor('wb-button', 'rgb(125,99,143)');
+		changeSingleButtonColor('highlighter', '#F64C72');
+	});
+	
+	$('#eraser').click(function() {
+		setTool(new marker(100,"white"));
+		changeClassButtonColor('wb-button', 'rgb(125,99,143)');
+		changeSingleButtonColor('eraser', '#F64C72');
+	});
+	
+	// Color and Modal Stuff
+	$('#colors').click(function() {
+		modal.style.display = "block";
+	});
+	
+	//Colors
+	$('#blue').click(function() {
+    changeToolColor("blue");
+	});
+
+	$('#red').click(function() {
+    changeToolColor("red");
+	});
+
+	$('#green').click(function() {
+    changeToolColor("green");
+	});
+
+	$('#brown').click(function() {
+    changeToolColor("brown");
+	});
+
+	$('#purple').click(function() {
+    changeToolColor("purple");
+	});
+
+	$('#black').click(function() {
+    changeToolColor("black");
+	});
+	//End Colors
+
+	window.onclick = function(event) {
+		if(event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+
+	// End Modal Stuff
+	
+	$('#plus').click(function() {
+		if(document.getElementById('marker').style.color == 'rgb(246, 76, 114)') {
+			setTool(new marker(tool.size+5,currentColor));
+		} else if (document.getElementById('highlighter').style.color == 'rgb(246, 76, 114)') {
+			setTool(new highlighter(tool.size+5,"yellow"));
+		} else if (document.getElementById('eraser').style.color == 'rgb(246, 76, 114)') {
+			setTool(new marker(tool.size+5, "white"));
+		}
+	});
+	
+	$('#minus').click(function() {
+		if(document.getElementById('marker').style.color == 'rgb(246, 76, 114)') {
+			setTool(new marker(tool.size-5,currentColor));
+		} else if (document.getElementById('highlighter').style.color == 'rgb(246, 76, 114)') {
+			setTool(new highlighter(tool.size-5,"yellow"));
+		} else if(document.getElementById('eraser').style.color == 'rgb(246, 76, 114)'){
+			setTool(new marker(tool.size-5, "white"));
+		}
 	});
 
 	var tool = new marker(5,"blue"); //default marker tool of  size and blue color
@@ -193,19 +286,19 @@ function dataURLtoBlob(dataURL) {
  	return new Blob([new Uint8Array(array)], {type: 'image/png'});
 }
 
+$("#save").click(function() {
+	saveURL(document.querySelector('#board').toDataURL());
+	alert("Whiteboard successfully saved!");
+});
+
 $('#drawmode').click(function() {
 	drawMode = !drawMode;
 	var drawModeButton = document.getElementById('drawmode');
 	if(drawMode) 
-		drawModeButton.style.backgroundColor = 'green';
+		drawModeButton.style.color = 'green';
 	else
-		drawModeButton.style.backgroundColor = 'red';
+		drawModeButton.style.color = 'red';
 });
-
-$("#save").click(function() {
-	saveURL(document.querySelector('#board').toDataURL());
-}
-);
 
 function saveURL(dataURL) {
 	var file= dataURLtoBlob(dataURL);
@@ -239,4 +332,16 @@ function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
 	context.lineTo(xPos,yPos);
 	context.stroke();
 
+}
+
+function changeClassButtonColor(className, color) {
+	var restButtons = document.getElementsByClassName(className);
+	for(var i = 0; i < restButtons.length; i++) {
+	  restButtons[i].style.color = color;
+	}
+}
+
+function changeSingleButtonColor(idName, color) {
+  var button = document.getElementById(idName);
+	button.style.color = color;
 }
