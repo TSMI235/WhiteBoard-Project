@@ -10,57 +10,80 @@
             margin: 0;
             padding: 0;
         }
-        #info{
-            z-index:10;
-            position: absolute;
-        }
-        #thecanvas{
-            z-index:1;
-            position: absolute;
-            border: 2px solid black;
-        }
         .hidden{
             display: none;
         }
     </style>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="turbolinks-cache-control" content="no-preview">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <%= javascript_include_tag "board", "data-turbolinks-track" => true %>
     <img src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= @whiteboard.id%>?<%= rand(0..1000) %>" crossorigin="anonymous" class = "hidden" id = "savedImage">
-
   </head>
 
-  <body>
+  <body class="whiteboard-body">
         <p hidden id=hash-id><%= @whiteboard[:hash_id]%></p>
         <p hidden id=id><%= @whiteboard[:id]%></p>
-        <div id=info>
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand active">WhiteBoard</a>
-					</div>
-					<ul class="nav navbar-nav">
-						<li><a href="../home/index">Home</a></li>
-						<li><a href="../whiteboards">My Whiteboards</a></li>
-						<div class="btn-group" id=info>
-							<button type="button" class="btn btn-inverse navbar-btn role="button"><%= link_to "Edit", edit_whiteboard_path(@whiteboard) %></button>
-							<button type="button" class="btn btn-inverse navbar-btn role="button"><%= link_to "Delete", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
-							<button type="button" class="btn btn-inverse navbar-btn role="button" id='save'>Save</button>
-						</div>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<% if current_user %>
-							<li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span><%= @username %></a></li>
-							<li><a class="glyphicon" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
-						<% else %>
-							<li><a href=<%= new_user_registration_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-							<li><a href=<%= new_user_session_path %>><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						<% end  %>
-					</ul>
+        <div id="whiteboard-ui">
+            <div class="whiteboard-nav">
+                <div class="name home-name whiteboard-name">
+					<h2>white<span id='board-name'>Board</span></h2>
 				</div>
-			</nav>
-			<p style="margin-top:65px">
-			<button id="drawmode" style="background-color: green;">DRAW MODE</button>
+                <ul class="nav-links">
+                    <!--<li><%= link_to "Edit", edit_whiteboard_path(@whiteboard) %></li>-->
+                    <!--<li><%= link_to "Delete", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></li>
+                    --><li><button id="drawmode" style="color: green;"><i class="fas fa-pen"></i></button></li>
+                    <li><button id=save><i class="far fa-save"></i></button></li>
+                    <li>
+                        <a id="whiteboard-link-button" href=<%= edit_whiteboard_path(@whiteboard) %>>
+                            <button id="edit">
+                                <i class="far fa-edit"></i>
+                            </button>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="whiteboard-link-button" data-confirm="Are you sure you want to delete this whiteboard?" rel="nofollow" data-method="delete" href=<%= @whiteboard %>>
+                            <button id="delete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="whiteboard-buttons">
+                <div class="btn-group-vertical">
+                    <button id="marker" class="wb-button" style="color: rgb(246, 76, 114)"><i class="fas fa-paint-brush"></i></button>
+                    <button id="highlighter" class="wb-button"><i class="fas fa-highlighter"></i></button>
+                    <button id="eraser" class="wb-button"><i class="fas fa-eraser"></i></button>
+                    <button id="colors" class="wb-button"><i class="fas fa-palette"></i></button>
+                    <!-- Popup Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal Content -->
+                        <div class="modal-content">
+                            <div class="color-buttons">
+                                <button class="ind-color-button" id="blue" style="background-color: blue; color:blue;"></button>
+                                <button class="ind-color-button" id="red" style="background-color: red; color:red;"></button>
+                                <button class="ind-color-button" id="green" style="background-color: green; color:green;"></button>
+                                <button class="ind-color-button" id="brown" style="background-color: brown; color:brown;"></button>
+                                <button class="ind-color-button" id="purple" style="background-color: purple; color:purple;"></button>
+                                <button class="ind-color-button" id="black" style="background-color: black; color:black;"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="plus" class="wb-button"><i class="fas fa-plus"></i></button>
+                    <button id="minus" class="wb-button"><i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+
+            <!--<h3><%= @title %></h3>
+            <button><%= link_to "Edit Whiteboard", edit_whiteboard_path(@whiteboard) %></button>
+            <button><%= link_to "Delete Whiteboard", @whiteboard, method: :delete, data: { confirm: "Are you sure you want to delete this whiteboard?"} %></button>
+            <button id="drawmode" style="background-color: green;">DRAW MODE</button>
+            <button id=save>Save Whiteboard</button>
+            <p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
 			<select ID = "Color">
 				<option value="blue">Blue</option>
 				<option value="red">Red</option>
@@ -69,18 +92,16 @@
 				<option value="purple">Purple</option>
 				<option value="black">Black</option>
 			</select>
-			<p ID="tag">Size: 5</p>
-			<p>Press 1 for Marker, Press 2 for Highligther, Press 3 for Eraser</p>
-			<p></p>
-			<h3><%= @title %></h3>
+			<p ID="tag">Size: 5</h3>-->
         </div>
         <div id=thecanvas>
-        <canvas id="board" width=<%= @width %> height=<%= @height %>></canvas>
+            <canvas id="board" width=<%= @whiteboard[:canvas_width]%> height=<%= @whiteboard[:canvas_height] %>></canvas>
         </div>
 
   </body>
   <script>
         var hashid = $('#hash-id')[0].innerHTML;
         var id = $('#id')[0].innerHTML;
+        var image = $('#savedImage')[0];
     </script>
 </html>
