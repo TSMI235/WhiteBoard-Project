@@ -1,3 +1,149 @@
 // Place all the styles related to the Whiteboards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.whiteboard-body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.whiteboard-name {
+    padding: 0;
+    padding-left: 2rem;
+    margin: 0;
+    position: absolute;
+    color: var(--secondary);
+    text-align: left;
+    font-size: 3em;
+}
+
+.whiteboard-nav {
+    background-color: var(--primary);
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    position: fixed;
+    top: 0;
+    border-bottom: 3px solid var(--secondary);
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4);
+    z-index: 200;
+}
+
+.whiteboard-nav button {
+    text-decoration: none;
+    color: var(--secondary);
+    text-transform: uppercase;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.whiteboard-nav button:hover {
+    color: var(--tertiary);
+}
+
+.whiteboard-nav ul {
+    padding: 1rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: right;
+    text-align: center;
+}
+
+.whiteboard-nav li {
+    padding-top: 1rem;
+    padding-bottom: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#thecanvas {
+    overflow-x: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 0;
+    padding-top: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.nav-links button {
+    background-color: inherit;
+    color: var(--secondary);
+    font-size: 2rem;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.whiteboard-buttons {
+    z-index: 1000;
+    position: absolute;
+    background-color: var(--primary);
+    border-radius: 5px;
+    border: 2px solid var(--secondary);
+    position: fixed;
+    margin-top: 6em;
+    margin-left: 1rem;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4);
+}
+
+.whiteboard-buttons button {
+    display: block;
+    background-color: var(--primary);
+    color: var(--tertiary);
+    border: none;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+#plus i:hover,#minus i:hover,#colors i:hover,#eraser i:hover,#highlighter i:hover,#marker i:hover {
+    color: var(--secondary);
+}
+
+.color-buttons {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-row-gap: 1em;
+    justify-items: center;
+}
+
+.ind-color-button {
+    padding: 1em;
+    width: .5vw;
+    height: .5vh;
+    border: 0px solid #fff;
+    border-radius: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+}
+
+@media only screen and (max-width: 430px) {
+    .whiteboard-name {
+        display: none;
+    }
+
+    .whiteboard-nav ul {
+        justify-content: center;
+        text-align: center;
+    }
+}
