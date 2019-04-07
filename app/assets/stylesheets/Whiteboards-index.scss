@@ -1,0 +1,66 @@
+.whiteboard-container {
+    background-color: var(--primary);
+    height: 100%;
+    min-height: 100vh !important;
+}
+
+.whiteboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    margin: 2rem;
+}
+
+.card-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.whiteboard-image {
+    background-color:white;
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    border: 2px solid var(--tertiary);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.whiteboard-text {
+    color: var(--secondary);
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.whiteboard-button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 9px;
+    color: var(--primary);
+    background-color: var(--secondary);
+    text-transform: uppercase;
+    min-width: 200px;
+    max-width: 300px;
+    //height: 2.5vw;
+    border: 2px solid var(--secondary);
+    position: left;
+}
+
+.whiteboard-button:hover :not(a){
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.whiteboard-button:focus {
+    outline-width: 0;
+}
+
+.goto-link {
+    text-decoration: none !important;
+    color: var(--primary);
+}
+
+.goto-link:hover {
+    text-decoration: none !important;
+    color: white;
+}
