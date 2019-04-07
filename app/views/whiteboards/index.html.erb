@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset ="utf-8"/>
-    <title>Bootstrap grid</title>
-
-    <body class = "bg">
-
-    <!-- We link the CDN css files here --> 
-    <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" >
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
-		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/WhiteBoardIndex.css">
-    
-  </head>
-  
-
-  <body class = “index-page” >
-  
-  		<!-- navbar -->  
-	<nav class="navbar navbar-light" style="background-color: #FFCD24;">
+<body class= "bg">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body class='whiteboard-container'>
+  <nav class="navbar navbar-light" style="background-color: #FFCD24;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand">boardMeeting</a>
@@ -37,14 +19,14 @@
           <div class="dropdown-divider"></div>
         </div>
       </li>
-	  <li> <% if current_user %>
-			<a href="../whiteboards/new">Create New</a>
-		<% else %>
- 		   <a .style.visibility="hidden"></a>
-		<% end %>
-		</li>
+    <li> <% if current_user %>
+      <a href="../whiteboards/new">Create New</a>
+    <% else %>
+       <a .style.visibility="hidden"></a>
+    <% end %>
+    </li>
         </ul>
-			<% if current_user %>
+      <% if current_user %>
         <form class="navbar-form navbar-left">
             <div class="input-group">
                 <input id="home-search-bar" type = "text" class="form-control", placeholder="Enter Whiteboard id...", spellcheck="false">
@@ -53,75 +35,42 @@
                 </span>
             </div>
         </form>
-		<% else %>
- 		   <a .style.visibility="hidden"></a>
-		<% end %>
+    <% else %>
+       <a .style.visibility="hidden"></a>
+    <% end %>
         <ul class="nav navbar-nav navbar-right">
-				<% if current_user %>
-				<li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span><%= @username %></a></li>
-				<li><a class="glyphicon glyphicon-log-out" rel="nofollow" data-method="delete" href="/users/sign_out"> Sign Out</a></li>
-				<% else %>
-     		 	<li><a href=<%= new_user_registration_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-     			<li><a href=<%= new_user_session_path %>><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-				<% end  %>
-			</ul>
+        <% if current_user %>
+        <li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span><%= @username %></a></li>
+        <li><a class="glyphicon glyphicon-log-out" rel="nofollow" data-method="delete" href="/users/sign_out"> Sign Out</a></li>
+        <% else %>
+          <li><a href=<%= new_user_registration_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href=<%= new_user_session_path %>><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <% end  %>
+      </ul>
     </div>
 </nav>
 
-
-<% @whiteboards.each do |whiteboard| %>
-<% if current_user.email == whiteboard.creator_email %>
-<div class="card" style="width: 18rem; padding: 2rem;">
-  <div class="card-img-top">
-    
-      <img style="border:10px solid white;" src="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>"  width="225" height="151"  />
+  <div class="whiteboard-cards">
+    <% @whiteboards.each do |whiteboard| %>
+      <!--<% if current_user.email == whiteboard.creator_email %>-->
+      <div class="card-container">
+        <div class="whiteboard-image-container">
+          <script>
+            function errorFunction(image) {
+            image.onerror = "";
+            image.src = "<%= image_path('no_save_image.png') %>";
+            return true;
+        } 
+          </script>
+          <img id = "Thumbnail" class="whiteboard-image" crossorigin="anonymous" src ="https://s3.amazonaws.com/whiteboard-csc3380/<%= whiteboard.id %>?<%= rand(0..1000) %>" onerror="errorFunction(this);">
+        </div>
+        <div class="whiteboard-title">
+          <div class="whiteboard-text"><%= whiteboard.title %></div>
+        </div>
+        <button class="whiteboard-button"><%= link_to "Use Whiteboard", whiteboard, class: 'goto-link'%></button>
+      </div>
+      <% end %>
+    <% end %>
   </div>
-  <div class="card-body">
-    <h5 class="card-title"><%= whiteboard.title %></h5>
-    <p class="card-text"><%= whiteboard.description %></p>
-    <p class="card-text"><%= whiteboard.canvas_width %>x<%= whiteboard.canvas_height %></p>
-    <%= link_to "Use Whiteboard", whiteboard, class:"btn btn-primary"%>
-  </div>
-</div>
-<% end %>
-<% end %>
-    <!-- Javascript files should be linked at the bottom of the page --> 
-    <script src="/assets/javascripts/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-    <script src="/assets/javascripts/bootstrap.min.js"></script>
-	  
-	  
-	 
-<script>
-		$('#home-page-search-button').click(function() {
-			var wbpath = document.getElementById('home-search-bar').value;
-			var actualPath = 'https://boardMeeting.herokuapp.com/whiteboards/' + wbpath;
-			$.ajax({
-				type: 'HEAD',
-				url: actualPath,
-				success: function() {
-					window.location.assign(actualPath);
-				},
-				error: function() {
-					var obj = document.getElementById('home-search-bar');
-					var origBorder = obj.style.border;
-					var origColor = obj.style.color;
-					obj.style.border = "2px solid red";
-					obj.style.color = "red";
-					setTimeout(function() {
-						obj.style.border = origBorder;
-						obj.style.color = origColor;
-					}, 3000);
-				}
-			});
-		});
-	</script>
-
-	  
-	  
-	  
-	  
 </body>
 </body>
-
-</html>
