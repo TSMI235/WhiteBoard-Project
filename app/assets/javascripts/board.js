@@ -279,9 +279,7 @@ $(function() {
 	});
 
 	var tool = new marker(5,"blue"); //default marker tool of  size and blue color
-	context.strokeStyle = tool.color;
-	context.lineWidth = tool.size*2;
-	context.fillStyle = tool.color;
+	setTool(tool);
 
 
 function dataURLtoBlob(dataURL) {
