@@ -331,6 +331,7 @@ function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
 	context.moveTo(xPrev,yPrev);
 	context.lineTo(xPos,yPos);
 	context.stroke();
+	context.globalCompositeOperation = "source-over";
 
 }
 
