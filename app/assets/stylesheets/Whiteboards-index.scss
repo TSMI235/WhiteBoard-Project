@@ -26,7 +26,7 @@
 }
 
 .whiteboard-text {
-    color: var(--secondary);
+    color: var(--primary);
     text-align: center;
     font-size: 2rem;
     padding: 1rem;
@@ -36,13 +36,13 @@
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     border-radius: 9px;
-    color: var(--primary);
-    background-color: var(--secondary);
+    color: var(--secondary);
+    background-color: var(--primary);
     text-transform: uppercase;
     min-width: 200px;
     max-width: 300px;
     //height: 2.5vw;
-    border: 2px solid var(--secondary);
+    border: 2px solid var(--primary);
     position: left;
 }
 
@@ -57,7 +57,7 @@
 
 .goto-link {
     text-decoration: none !important;
-    color: var(--primary);
+    color: var(--tertiary);
 }
 
 .goto-link:hover {
