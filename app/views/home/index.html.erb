@@ -53,8 +53,8 @@
 		<% end %>
         <ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
-				<li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span><%= @username %></a></li>
-				<li><a class="glyphicon glyphicon-log-out" rel="nofollow" data-method="delete" href="/users/sign_out"> Sign Out</a></li>
+				<li><a href=<%= edit_user_registration_path %>><span class="glyphicon glyphicon-user"></span> <%= @username %></a></li>
+				<li><a href="/users/sign_out"><span class="glyphicon glyphicon-log-out" data-method="delete"></span> Sign Out</a></li>
 				<% else %>
      		 	<li><a href=<%= new_user_registration_path %>><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
      			<li><a href=<%= new_user_session_path %>><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
