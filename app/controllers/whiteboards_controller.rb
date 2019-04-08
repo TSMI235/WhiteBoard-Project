@@ -48,7 +48,7 @@ class WhiteboardsController < ApplicationController
             File.delete("#{Rails.root}/app/assets/images/#{@whiteboard.hash_id}.png")
         end 
         @whiteboard.destroy
-        redirect_to controller: 'home', action: 'index'
+        redirect_to controller: 'whiteboards', action: 'index'
     end
 
     def save
