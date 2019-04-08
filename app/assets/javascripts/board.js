@@ -320,12 +320,6 @@ function saveURL(dataURL) {
 });
 
 function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
-	if(highlighter) {
-			context.globalCompositeOperation = "multiply";
-	}
-	else {
-			context.globalCompositeOperation = "source-over";
-	}
 	context.strokeStyle = color;
 	context.lineWidth = size*2;
 	context.fillStyle = color;
@@ -336,12 +330,6 @@ function drawLine(xPrev,yPrev,xPos,yPos,color,size,highlighter) {
 	context.moveTo(xPrev,yPrev);
 	context.lineTo(xPos,yPos);
 	context.stroke();
-	if(tool.highlighter) {
-		context.globalCompositeOperation = "multiply";
-	}
-	else {
-		context.globalCompositeOperation = "source-over";
-	}
 }
 
 function changeClassButtonColor(className, color) {
