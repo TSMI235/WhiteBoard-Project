@@ -194,22 +194,26 @@ $(function() {
 
 	var modal = document.getElementById("myModal");
 
+	// Change this to correct colors if changed!
+	var currentSecondaryColor = 'rgb(102, 218, 218)';
+	var currentTertiaryColor = 'rgb(128,128,128)';
+
 	$('#marker').click(function() {
 		setTool(new marker(5,"blue"));
-		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('marker', '#66dada');
+		changeClassButtonColor('wb-button', currentTertiaryColor);
+		changeSingleButtonColor('marker', currentSecondaryColor);
 	});
 	
 	$('#highlighter').click(function() {
 		setTool(new highlighter(20,"yellow"));
-		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('highlighter', '#66dada');
+		changeClassButtonColor('wb-button', currentTertiaryColor);
+		changeSingleButtonColor('highlighter', currentSecondaryColor);
 	});
 	
 	$('#eraser').click(function() {
 		setTool(new marker(100,"white"));
-		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('eraser', '#66dada');
+		changeClassButtonColor('wb-button', currentTertiaryColor);
+		changeSingleButtonColor('eraser', currentSecondaryColor);
 	});
 	
 	// Color and Modal Stuff
@@ -252,21 +256,21 @@ $(function() {
 	// End Modal Stuff
 	
 	$('#plus').click(function() {
-		if(document.getElementById('marker').style.color == 'rgb(102, 218, 218)') {
+		if(document.getElementById('marker').style.color == currentSecondaryColor) {
 			setTool(new marker(tool.size+5,currentColor));
-		} else if (document.getElementById('highlighter').style.color == 'rgb(102, 218, 218)') {
+		} else if (document.getElementById('highlighter').style.color == currentSecondaryColor) {
 			setTool(new highlighter(tool.size+5,"yellow"));
-		} else if (document.getElementById('eraser').style.color == 'rgb(102, 218, 218)') {
+		} else if (document.getElementById('eraser').style.color == currentSecondaryColor) {
 			setTool(new marker(tool.size+5, "white"));
 		}
 	});
 	
 	$('#minus').click(function() {
-		if(document.getElementById('marker').style.color == 'rgb(102, 218, 218)') {
+		if(document.getElementById('marker').style.color == currentSecondaryColor) {
 			setTool(new marker(tool.size-5,currentColor));
-		} else if (document.getElementById('highlighter').style.color == 'rgb(102, 218, 218)') {
+		} else if (document.getElementById('highlighter').style.color == currentSecondaryColor) {
 			setTool(new highlighter(tool.size-5,"yellow"));
-		} else if(document.getElementById('eraser').style.color == 'rgb(102, 218, 218)'){
+		} else if(document.getElementById('eraser').style.color == currentSecondaryColor){
 			setTool(new marker(tool.size-5, "white"));
 		}
 	});
