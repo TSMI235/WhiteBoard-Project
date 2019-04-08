@@ -197,19 +197,19 @@ $(function() {
 	$('#marker').click(function() {
 		setTool(new marker(5,"blue"));
 		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('marker', 'rgb(102, 218, 218)');
+		changeSingleButtonColor('marker', '#66dada');
 	});
 	
 	$('#highlighter').click(function() {
 		setTool(new highlighter(20,"yellow"));
 		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('highlighter', 'rgb(102, 218, 218)');
+		changeSingleButtonColor('highlighter', '#66dada');
 	});
 	
 	$('#eraser').click(function() {
 		setTool(new marker(100,"white"));
 		changeClassButtonColor('wb-button', 'rgb(128,128,128)');
-		changeSingleButtonColor('eraser', 'rgb(102, 218, 218)');
+		changeSingleButtonColor('eraser', '#66dada');
 	});
 	
 	// Color and Modal Stuff
