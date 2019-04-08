@@ -101,11 +101,11 @@ $(function() {
 
 	function changeToolColor(color) {
 		document.getElementById("myModal").style.display = "none";
-		if(document.getElementById('marker').style.color == 'rgb(102, 218, 218)') {
+		if(tool.isEraser == false) {
 			currentColor = color;
 			setTool(new marker(tool.size,color));
 		} else {
-			alert("Cannot change color of eraser/highlighter!");
+			alert("Cannot change color of eraser!");
 		}
 	}
 
@@ -149,6 +149,12 @@ $(function() {
 		constructor(size,color) {
 			super(size,color);
 			this.highlighter = false;
+			if color == "white" {
+				this.isEraser = true;
+			}
+			else {
+				this.isEraser = false;
+			}
 		}
 	}
 
@@ -156,6 +162,7 @@ $(function() {
 		constructor(size,color) {
 			super(size,color);
 			this.highlighter = true;
+			this.isEraser = false;
 		}
 	}
 
