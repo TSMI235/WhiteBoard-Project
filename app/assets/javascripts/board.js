@@ -272,7 +272,10 @@ $(function() {
 	});
 
 	var tool = new marker(5,"blue"); //default marker tool of  size and blue color
-	setTool(tool);
+	context.strokeStyle = tool.color;
+	context.lineWidth = tool.size*2;
+	context.fillStyle = tool.color;
+
 
 function dataURLtoBlob(dataURL) {
 	var binary = atob(dataURL.split(',')[1]);
