@@ -99,9 +99,13 @@ $(function() {
 		}
 	}
 
+	// Change this to correct colors if changed!
+	var currentSecondaryColor = 'rgb(102, 218, 218)';
+	var currentTertiaryColor = 'rgb(128,128,128)';
+
 	function changeToolColor(color) {
 		document.getElementById("myModal").style.display = "none";
-		if(document.getElementById('marker').style.color == 'rgb(102, 218, 218)') {
+		if(document.getElementById('marker').style.color == currentSecondaryColor) {
 			currentColor = color;
 			setTool(new marker(tool.size,color));
 		} else {
@@ -194,10 +198,6 @@ $(function() {
 
 	var modal = document.getElementById("myModal");
 
-	// Change this to correct colors if changed!
-	var currentSecondaryColor = 'rgb(102, 218, 218)';
-	var currentTertiaryColor = 'rgb(128,128,128)';
-
 	$('#marker').click(function() {
 		setTool(new marker(5,"blue"));
 		changeClassButtonColor('wb-button', currentTertiaryColor);
@@ -244,6 +244,30 @@ $(function() {
 
 	$('#black').click(function() {
     changeToolColor("black");
+	});
+
+	$('#deeppink').click(function() {
+    changeToolColor("deeppink");
+	});
+
+	$('#gold').click(function() {
+    changeToolColor("gold");
+	});
+
+	$('#lightseagreen').click(function() {
+    changeToolColor("lightseagreen");
+	});
+
+	$('#mediumspringgreen').click(function() {
+    changeToolColor("mediumspringgreen");
+	});
+
+	$('#teal').click(function() {
+    changeToolColor("teal");
+	});
+
+	$('#slategrey').click(function() {
+    changeToolColor("slategrey");
 	});
 	//End Colors
 
