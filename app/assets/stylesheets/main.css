@@ -1,5 +1,8 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+*:focus {
+    outline: 0 !important;
+}
 
 .home-page {
 	background-image: url("https://wallpaperplay.com/walls/full/5/6/c/86233.jpg");
