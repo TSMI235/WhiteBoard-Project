@@ -100,8 +100,8 @@ $(function() {
 	}
 
 	// Change this to correct colors if changed!
-	var currentSecondaryColor = 'rgb(51,122,183)';
-	var currentTertiaryColor = 'rgb(128,128,128)';
+	var currentSecondaryColor = 'rgb(51, 122, 183)';
+	var currentTertiaryColor = 'rgb(128, 128, 128)';
 
 	function changeToolColor(color) {
 		document.getElementById("myModal").style.display = "none";
