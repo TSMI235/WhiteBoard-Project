@@ -46,7 +46,7 @@
 	text-align: center;
     margin: auto;
     padding: 0em;
-    color:#FFFFFF;
+    color: var(--secondary);
     font-size: 2rem;
     width: 90%;
     line-height: 1.5;

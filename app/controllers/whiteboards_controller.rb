@@ -16,7 +16,9 @@ class WhiteboardsController < ApplicationController
     end
   
     def new 
-      @whiteboard = Whiteboard.new
+        @whiteboard = Whiteboard.new
+        @userSplit = (current_user.email).split("@")
+        @username = @userSplit[0];
     end
 
     def create
@@ -31,6 +33,8 @@ class WhiteboardsController < ApplicationController
 
     def edit
         @whiteboard = Whiteboard.friendly.find(params[:id])
+        @userSplit = (current_user.email).split("@")
+        @username = @userSplit[0];
     end
 
     def update
