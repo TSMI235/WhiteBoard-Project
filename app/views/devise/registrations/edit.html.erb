@@ -105,31 +105,31 @@
         </div>
         </body>
       </div>
-        <script src="/assets/javascripts/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="/assets/javascripts/bootstrap.min.js"></script>
 
-  <script>
-		$('#home-page-search-button').click(function() {
-			var wbpath = document.getElementById('home-search-bar').value;
-			var actualPath = 'https://boardMeeting.herokuapp.com/whiteboards/' + wbpath;
-			$.ajax({
-				type: 'HEAD',
-				url: actualPath,
-				success: function() {
-					window.location.assign(actualPath);
-				},
-				error: function() {
-					var obj = document.getElementById('home-search-bar');
-					var origBorder = obj.style.border;
-					var origColor = obj.style.color;
-					obj.style.border = "2px solid red";
-					obj.style.color = "red";
-					setTimeout(function() {
-						obj.style.border = origBorder;
-						obj.style.color = origColor;
-					}, 3000);
-				}
-			});
-		});
-	</script>
+        <script>
+          $('#home-page-search-button').click(function() {
+            var wbpath = document.getElementById('home-search-bar').value;
+            var actualPath = 'https://boardMeeting.herokuapp.com/whiteboards/' + wbpath;
+            $.ajax({
+              type: 'HEAD',
+              url: actualPath,
+              success: function() {
+                window.location.assign(actualPath);
+              },
+              error: function() {
+                var obj = document.getElementById('home-search-bar');
+                var origBorder = obj.style.border;
+                var origColor = obj.style.color;
+                obj.style.border = "2px solid red";
+                obj.style.color = "red";
+                setTimeout(function() {
+                  obj.style.border = origBorder;
+                  obj.style.color = origColor;
+                }, 3000);
+              }
+            });
+          });
+        </script>
 </html>
