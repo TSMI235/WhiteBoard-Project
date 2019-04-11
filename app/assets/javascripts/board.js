@@ -199,7 +199,7 @@ $(function() {
 	var modal = document.getElementById("myModal");
 
 	$('#marker').click(function() {
-		setTool(new marker(5,"blue"));
+		setTool(new marker(5,currentColor));
 		changeClassButtonColor('wb-button', currentTertiaryColor);
 		changeSingleButtonColor('marker', currentSecondaryColor);
 	});
