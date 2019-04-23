@@ -61,6 +61,7 @@
 			</ul>
     </div>
 </nav>
+		<!-- Begin Homepage layout --> 
 	<div class=" description ">
    		<h1>Welcome to <span>boardMeeting!</span> </h1>
 		<h2> A Collabotative Whiteboard Tool</h2>
@@ -102,6 +103,7 @@
 </div>
 </div>
 <br>
+		<!-- End Homepage Layout --> 
 
 	<!-- Latest compiled and minified JavaScript -->
 		<script src="/assets/javascripts/bootstrap.min.js"></script>
@@ -109,7 +111,10 @@
 
 	<!-- Javascript files should be linked at the bottom of the page --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- search bar funtion --> 
 	<script>
+		
+		
 		$('#home-page-search-button').click(function() {
 			var wbpath = document.getElementById('home-search-bar').value;
 			var actualPath = 'https://boardmeeting.herokuapp.com/whiteboards/' + wbpath;
