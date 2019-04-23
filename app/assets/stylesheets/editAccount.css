@@ -1,7 +1,9 @@
+/*background css*/
 .bg{
     background-image: url("https://wallpaperplay.com/walls/full/5/6/c/86233.jpg");
     background-size: 100;
     color: #fff;}
+/*css to create border and shadow around user input form*/
 .form-container{
     width: 360px;
     padding: 8% 0 0;

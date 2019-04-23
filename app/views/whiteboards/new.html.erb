@@ -49,7 +49,7 @@
     </div>
 </nav>
 
-
+<!--header for bootstrap and css links-->
 <h2>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,12 +57,13 @@
   <link rel = "stylesheet" href="app/assets/stylesheets/bootstrap.min.css" />
   <link rel = "stylesheet" type="text/css" href="app/assets/stylesheets/whiteboardNew" />
 </h2>
+<!--bootstrap html for page layout-->
 <body class="bg">
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12"></div>
      <div class="col-md-4 col-sm-4 col-xs-12">
-
+        <!--form html for user input-->
         <%= form_for @whiteboard, html: {:class => 'form-container'} do |f| %>
           <h3>New Whiteboard</h3>
           <div>
@@ -94,7 +95,7 @@
           </div>
 
         <% end %>
-
+        <!--end form html-->
       </div>
     <div class="col-md-4 col-sm-4 col-xs-12"></div>
   </div>

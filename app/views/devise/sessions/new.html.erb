@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%= devise_error_messages! %>
-
-
+<!--header for bootstrap and css links-->
 <h2>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,11 +8,13 @@
   <link rel = "stylesheet" href="app/assets/stylesheets/bootstrap.min.css" />
   <link rel = "stylesheet" type="text/css" href="app/assets/stylesheets/login.css"/>
 </h2>
+<!--bootstrap html for page layout-->
 <body class="bg">
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12"></div>
      <div class="col-md-4 col-sm-4 col-xs-12">
+       <!--form html for user input-->
         <%= form_for(resource, as: resource_name, url: session_path(resource_name),html: {class: "form-container"}) do |f| %>
           <h3>Log In</h3>
           <div class="form-group">
@@ -32,6 +33,7 @@
               <%= f.label :remember_me %>
             </div>
           <% end -%>
+          <!--end form html-->
           <div class="form-group">
             <%= f.submit "Log In", class:'btn btn-warning btn-block' %>
           </div>
@@ -45,6 +47,7 @@
   </div>
 </div>
 </body>
+<!--end layout html-->
   <script src="/assets/javascripts/jquery.min.js"></script>
   <script src="/assets/javascripts/bootstrap.min.js"></script>
 </html>

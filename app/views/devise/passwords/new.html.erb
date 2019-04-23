@@ -3,18 +3,17 @@
   <head>
     <meta charset ="utf-8"/>
     <title>Bootstrap grid</title>
-	 
 <body class="bg">
 
-    <!-- We link the CDN css files here --> 
+    <!-- We link the CDN css files here -->
     <!-- Latest compiled and minified CSS -->
    <link rel="stylesheet" href="app/assets/stylesheets/bootstrap.min.css" >
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="app/assets/stylesheets/bootstrap-theme.min.css">
 		<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/WhiteBoardIndex.css">
-    
-  </head>
 
+  </head>
+<!--bootstrap html for page layout-->
 <body id="signupPage">
   <%= devise_error_messages! %>
   <div class="container-fluid">
@@ -22,7 +21,7 @@
     <div class="col-md-4 col-sm-4 col-xs-12"></div>
      <div class="col-md-4 col-sm-4 col-xs-12">
 
-      
+      <!--form html for user input-->
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class:"form-container", method: :post }) do |f| %>
 
       <h2>Forgot your password?</h2>
@@ -41,7 +40,8 @@
             <%= render "devise/shared/links" %>
         </div>
       <% end %>
-       <!-- Javascript files should be linked at the bottom of the page --> 
+      <!--end form html-->
+       <!-- Javascript files should be linked at the bottom of the page -->
     <script src="/assets/javascripts/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
     <script src="/assets/javascripts/bootstrap.min.js"></script>
@@ -52,4 +52,3 @@
 </body>
 </body>
 </html>
-
